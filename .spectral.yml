@@ -1,0 +1,38 @@
+extends:
+  - - 'spectral:oas'
+    - recommended
+rules:
+
+  no-$ref-siblings: 'off'
+  operation-tags: 'off'
+
+  schema-names-pascal-case:
+    description: Schema names MUST be written in PascalCase
+    message: '{{property}} is not PascalCase: {{error}}'
+    recommended: true
+    type: style
+    given: '$.components.schemas.*~'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][a-zA-Z0-9]*$'
+
+  parameter-description:
+    description: Paraneters must have a description.
+    given: '$..properties.*'
+    then:
+      field: description
+      function: truthy
+    recommended: true
+
+  operationIds-kebab-case:
+    description: Operations MUST be written in kebab-case
+    message: '{{property}} is not kebab-case: {{error}}'
+    recommended: true
+    type: style
+    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property === 'post' || @property === 'delete' || @property === 'options' || @property === 'head' || @property === 'patch' || @property === 'trace' )]"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^([a-z0-9-]+)$"
