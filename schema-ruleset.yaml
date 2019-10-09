@@ -1,0 +1,55 @@
+rules:
+
+  # Tools like ReDoc generally try to use summary as nav items, so asking them to 
+  # end with a full stop makes those tools look weird
+  operation-summary-formatted: false
+  
+  # Keep summary short and sweet for ReDoc and similar tooling
+  succinct-summary: 
+    description: "Operation summary should be succinct, no full stops, and less than 20 characters"
+    recommended: true
+    type: "style"
+    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property === 'post' || @property === 'delete' || @property === 'options' || @property === 'head' || @property === 'patch' || @property === 'trace' )]"
+    then:
+      - field: summary
+        function: pattern
+        functionOptions:
+          notMatch: "\\."
+      - field: summary
+        function: length
+        functionOptions:
+          max: 20
+
+  # A common convention for schema names is PascalCase
+  schema-names-pascal-case:
+    description: Schema names MUST be written in PascalCase
+    message: '{{property}} is not PascalCase: {{error}}'
+    recommended: true
+    type: style
+    given: '$.components.schemas.*~'
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][a-zA-Z0-9]*$'
+
+  # Keep operationIds (which often go in the URL) as kebab case
+  operationIds-kebab-case:
+    description: Operation IDs MUST be written in kebab-case
+    message: '{{property}} is not kebab-case: {{error}}'
+    recommended: true
+    type: style
+    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property === 'post' || @property === 'delete' || @property === 'options' || @property === 'head' || @property === 'patch' || @property === 'trace' )]"
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: "^([a-z0-9-]+)$"
+
+  # Don't make people guess about what your parameters are
+  parameter-description:
+    description: Parameters must have a description.
+    recommended: true
+    given: '$..properties.*'
+    then:
+      field: description
+      function: truthy
