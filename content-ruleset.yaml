@@ -1,0 +1,10 @@
+rules:
+  paths-kebab-case:
+    description: Should paths be kebab case or underscores? AGH
+    severity: error
+    recommended: true
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([a-z0-9-]\/{}+)$"
