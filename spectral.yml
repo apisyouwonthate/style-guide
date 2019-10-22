@@ -1,6 +1,4 @@
 extends:
-  - - 'spectral:oas'
-    - recommended
   # These rules dictate actual content of the API: headers, URL conventions, woah!
   - ./content-ruleset.yaml
   # These rules will be helping the OpenAPI people write be better quality, but 

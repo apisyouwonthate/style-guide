@@ -1,8 +1,4 @@
 rules:
-
-  # Tools like ReDoc generally try to use summary as nav items, so asking them to 
-  # end with a full stop makes those tools look weird
-  operation-summary-formatted: false
   
   # Keep summary short and sweet for ReDoc and similar tooling
   succinct-summary: 
