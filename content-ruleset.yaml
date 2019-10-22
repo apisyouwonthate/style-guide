@@ -1,7 +1,8 @@
 rules:
   paths-kebab-case:
-    description: Should paths be kebab case or underscores? AGH
-    severity: error
+    description: Should paths be kebab-case.
+    message: '{{property}} is not kebab-case: {{error}}'
+    severity: warning
     recommended: true
     given: $.paths[*]~
     then:
