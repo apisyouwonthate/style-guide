@@ -1,7 +1,7 @@
 # OpenAPI Community Style Guide
 
 [Spectral] lets you enforce style guides on your APIs in the editor, CLI, continuous integration, etc., and comes with its [own set of baked 
-in OpenAPI v2/v3 rules](https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md). This repo is a community powered set of rules, which can be considered am extended superset (😉) of those rules. 
+in OpenAPI v2/v3 rules](https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md). This repo is a community powered set of rules, which can be considered an extended superset (😉) of those rules. 
 
 Let's collect a bunch of rules together that we think are excellent. This is going to 
 get opinionated fast, and there will be compromises made, but it's for the good of the community that we try and agree on something. 
