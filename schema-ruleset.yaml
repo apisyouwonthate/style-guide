@@ -1,8 +1,8 @@
 rules:
   
   # Keep summary short and sweet for ReDoc and similar tooling
-  succinct-summary: 
-    description: "Operation summary should be succinct, no full stops, and less than 20 characters"
+  operation-short-summary: 
+    description: "Operation summary should be short and sweet, no full stops, and less than 20 characters"
     recommended: true
     type: "style"
     given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property === 'post' || @property === 'delete' || @property === 'options' || @property === 'head' || @property === 'patch' || @property === 'trace' )]"

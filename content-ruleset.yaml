@@ -2,10 +2,10 @@ rules:
   paths-kebab-case:
     description: Should paths be kebab-case.
     message: '{{property}} is not kebab-case: {{error}}'
-    severity: warning
+    severity: warn
     recommended: true
     given: $.paths[*]~
     then:
       function: pattern
       functionOptions:
-        match: "^([a-z0-9-]\/{}+)$"
+        match: "^(\/[a-z0-9-{}]+)+$"
