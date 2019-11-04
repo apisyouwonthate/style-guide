@@ -9,3 +9,15 @@ rules:
       function: pattern
       functionOptions:
         match: "^(\/[a-z0-9-{}]+)+$"
+
+  no-x-headers:
+    description: "Please do not use headers with X-"
+    message: '{{property}} remove that X- if you can, and if you cannot then maybe just disable this rule. But... try and remove it.'
+    recommended: true
+    type: style
+    # TODO add encoding headers too "$..content.*.encoding.*.headers"
+    given: "$..parameters.[?(@.in === 'header')].name"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: '^(x|X)-'
