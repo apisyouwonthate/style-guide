@@ -1,10 +1,8 @@
+# @Deprecated
+# Pick and chose from the specific rulesets/style-guides in this repo
+
 extends:
-  # These rules dictate actual content of the API: headers, URL conventions, woah!
-  - ./content-ruleset.yaml
-  # These rules will be helping the OpenAPI people write be better quality, but 
-  # have no thoughts on the actual contents of the API
-  - ./schema-ruleset.yaml
-formats: 
-- oas2
-- oas3
+  - ./apisyouwonthate.yml
+  - ./openapi.yml
+
 rules: {}

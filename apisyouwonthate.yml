@@ -1,0 +1,54 @@
+# These rules dictate actual content of the API: headers, URL conventions, and general 
+# Good Ideas™ for HTTP APIs, mainly from the books/blogs on apisyouwonthate.com
+
+# TODO
+
+# Make sure every post/put/delete/patch endpoint has some sort of security (OAuth 2, API Key, but not both)
+
+# Numeric IDs are awful, use a UUID
+
+# No global version in url or header 
+
+# Correct error response format (JSO:API or RFC 7807)
+
+# Mime type should have "; charset=utf-8"
+
+# No path defined for /
+
+# No "(e/E)rror" in 2xx
+
+# GET with a body? Nah
+
+# If a DELETE method is successfully applied, the origin server SHOULD
+#    send a 202 (Accepted) status code if the action will likely succeed
+#    but has not yet been enacted, a 204 (No Content) status code if the
+#    action has been enacted and no further information is to be supplied,
+#    or a 200 (OK) status code if the action has been enacted and the
+#    response message includes a representation describing the status.
+
+# header-parameter-names-kebab-case': {
+#    given: "$..parameters[?(@.in === 'header')]",
+
+rules:
+  paths-kebab-case:
+    description: Should paths be kebab-case.
+    message: '{{property}} is not kebab-case: {{error}}'
+    severity: warn
+    recommended: true
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(\/[a-z0-9-{}]+)+$"
+
+  no-x-headers:
+    description: "Please do not use headers with X-"
+    message: "Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648"
+    recommended: true
+    type: style
+    # TODO add encoding headers too "$..content.*.encoding.*.headers"
+    given: "$..parameters.[?(@.in === 'header')].name"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: '^(x|X)-'

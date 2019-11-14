@@ -1,13 +1,25 @@
 # OpenAPI Community Style Guide
 
-[Spectral] lets you enforce style guides on your APIs in the editor, CLI, continuous integration, etc., and comes with its [own set of baked 
-in OpenAPI v2/v3 rules](https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md). This repo is a community powered set of rules, which can be considered am extended superset (😉) of those rules. 
+These days API Linting (or creating [automated style guides](https://www.apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-and-grpc)) is all the rage. 
 
-Let's collect a bunch of rules together that we think are excellent. This is going to 
-get opinionated fast, and there will be compromises made, but it's for the good of the community that we try and agree on something. 
+Spectral was created to make this simple with OpenAPI and AsyncAPI, powering linting in editors, as a CLI tool, in continuous integration, etc., and comes with its [own set of baked 
+in OpenAPI v2/v3 rules](https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md). 
 
-Then tools like Spectral can use this as a basis for rulesets, and other tools can either use the same rulesets or use Spectral, and we don't all have to write out our own things over and over. 
+This repo is the start of a community powered collection of style guides (a.k.a rulesets), which you can use as well as, or instead of, those rules.
 
-If you have some very very specific rules (like AWS Gateway compatibility, or rules required for a specific tool) please make a new file, and extend the main `spectral.yaml`).
+- [APIs You Won't Hate](./apisyouwonthate.yml) - Super opinionated HTTP API advice.
+- [AsyncAPI](./asyncapi.yml) - Make more useful and consistent AsyncAPI files.
+- [FHIR](./fhir.yml) - FHIR is a standard for health care data exchange, published by HL7.
+- [OpenAPI](./openapi.yml) - Make more useful and consistent OpenAPI files with this more experimental set of rules than `spectral:oas`.
+
+All of these rulesets have plenty of rules to be done, all mentioned in comments. Feel free to dig in and send PRs. 
+
+Other ideas for Rulesets:
+
+- [AWS Gateway](https://github.com/stoplightio/spectral/issues/475)
+- [JSON:API](https://github.com/stoplightio/spectral/issues/544)
+- [Microsoft Azure](https://github.com/stoplightio/spectral/issues/476)
+
+Make a new file and dig in. If you need any help post an issue.
 
 [Spectral]: https://stoplight.io/spectral/

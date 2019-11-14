@@ -1,3 +1,6 @@
+# These rules will be helping the OpenAPI people write be better quality, but 
+# have no thoughts on the actual contents of the API
+
 rules:
   
   # Keep summary short and sweet for ReDoc and similar tooling
