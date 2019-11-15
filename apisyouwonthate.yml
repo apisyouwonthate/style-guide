@@ -3,7 +3,8 @@
 
 # TODO
 
-# Make sure every post/put/delete/patch endpoint has some sort of security (OAuth 2, API Key, but not both)
+# Make sure every post/put/delete/patch endpoint has some sort of security
+# (OAuth 2, API Key, but not both)
 
 # Numeric IDs are awful, use a UUID
 
@@ -16,8 +17,6 @@
 # No path defined for /
 
 # No "(e/E)rror" in 2xx
-
-# GET with a body? Nah
 
 # If a DELETE method is successfully applied, the origin server SHOULD
 #    send a 202 (Accepted) status code if the action will likely succeed
@@ -52,3 +51,33 @@ rules:
       function: pattern
       functionOptions:
         notMatch: '^(x|X)-'
+
+  # Author: Andrzej (https://github.com/jerzyn)
+  oas2-hosts-https-only:
+    description: "ALL requests MUST go through `https` protocol only"
+    recommended: true
+    severity: error
+    formats: [oas2]
+    type: "style"
+    message: "Schemes MUST be https and no other value is allowed."
+    given: $.schemes
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          items:
+            type: string
+            enum: ["https"]
+          maxItems: 1
+
+  # Author: Andrzej (https://github.com/jerzyn)
+  request-GET-no-body:
+    description: A `GET` request MUST NOT accept a `body` parameter
+    severity: error
+    recommended: true
+    given: $.paths..get.parameters..in
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/^body$/"
