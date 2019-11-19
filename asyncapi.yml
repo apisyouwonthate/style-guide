@@ -1,9 +1,326 @@
 # These rules will be helping the AsyncAPI people write be better quality, but 
 # have no thoughts on the actual contents of the API
 
-rules: {}
+rules: 
+
+  #  operation-2xx-response:
+  #    description: Operation must have at least one `2xx` response.
+  #    recommended: true
+  #    type: style
+  #    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property ===
+  #      'post' || @property === 'delete' || @property === 'options' || @property ===
+  #      'head' || @property === 'patch' || @property === 'trace' )]"
+  #    then:
+  #      field: responses
+  #      function: oasOp2xxResponse
+  #    tags:
+  #    - operation
+  #  oas2-operation-formData-consume-check:
+  #    description: 'Operations with an `in: formData` parameter must include `application/x-www-form-urlencoded`
+  #      or `multipart/form-data` in their `consumes` property.'
+  #    recommended: true
+  #    type: validation
+  #    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property ===
+  #      'post' || @property === 'delete' || @property === 'options' || @property ===
+  #      'head' || @property === 'patch' || @property === 'trace' )]"
+  #    then:
+  #      function: oasOpFormDataConsumeCheck
+  #    tags:
+  #    - operation
+  #  operation-operationId-unique:
+  #    description: Every operation must have a unique `operationId`.
+  #    recommended: true
+  #    type: validation
+  #    severity: error
+  #    given: "$"
+  #    then:
+  #      function: oasOpIdUnique
+  #    tags:
+  #    - operation
+  #  operation-parameters:
+  #    description: Operation parameters are unique and non-repeating.
+  #    recommended: true
+  #    type: validation
+  #    given: "$"
+  #    then:
+  #      function: oasOpParams
+  #    tags:
+  #    - operation
+  #  operation-tag-defined:
+  #    description: Operation tags should be defined in global tags.
+  #    recommended: true
+  #    type: validation
+  #    given: "$"
+  #    then:
+  #      function: oasTagDefined
+  #    tags:
+  #    - operation
+  #  path-params:
+  #    description: Path parameters should be defined and valid.
+  #    message: "{{error}}"
+  #    type: validation
+  #    severity: error
+  #    recommended: true
+  #    given: "$"
+  #    then:
+  #      function: oasPathParam
+  #    tags:
+  #    - given
+  
+  contact-properties:
+    description: Contact object should have `name`, `url` and `email`.
+    recommended: true
+    severity: info
+    type: style
+    given: "$.info.contact"
+    then:
+    - field: name
+      function: truthy
+    - field: url
+      function: truthy
+    - field: email
+      function: truthy
+
+  example-value-or-externalValue:
+    description: Example should have either a `value` or `externalValue` field.
+    recommended: true
+    severity: warn
+    type: style
+    given: "$..example"
+    then:
+      function: xor
+      functionOptions:
+        properties:
+        - externalValue
+        - value
+        
+  info-contact:
+    description: Info object should contain `contact` object.
+    recommended: true
+    type: style
+    given: "$"
+    then:
+      field: info.contact
+      function: truthy
+
+  info-description:
+    description: AsyncAPI object info `description` must be present and non-empty string.
+    recommended: true
+    type: style
+    given: "$"
+    then:
+      field: info.description
+      function: truthy
+    tags:
+    - api
+  info-license:
+    description: AsyncAPI object info `license` must be present and non-empty string.
+    recommended: true
+    type: style
+    given: "$"
+    then:
+      field: info.license
+      function: truthy
+    tags:
+    - api
+  license-url:
+    description: License object should include `url`.
+    recommended: false
+    type: style
+    given: "$"
+    then:
+      field: info.license.url
+      function: truthy
+ 
+  asyncapi-tags-alphabetical:
+    description: AsyncAPI object should have alphabetical `tags`.
+    recommended: false
+    type: style
+    given: "$"
+    then:
+      field: tags
+      function: alphabetical
+      functionOptions:
+        keyedBy: name
+  
+  operation-description:
+    description: Operation `description` must be present and non-empty string.
+    recommended: true
+    type: style
+    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property ===
+      'post' || @property === 'delete' || @property === 'options' || @property ===
+      'head' || @property === 'patch' || @property === 'trace' )]"
+    then:
+      field: description
+      function: truthy
+    tags:
+    - operation
+  operation-operationId:
+    description: Operation should have an `operationId`.
+    recommended: true
+    type: style
+    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property ===
+      'post' || @property === 'delete' || @property === 'options' || @property ===
+      'head' || @property === 'patch' || @property === 'trace' )]"
+    then:
+      field: operationId
+      function: truthy
+    tags:
+    - operation
+  
+  
+  
+  
+  path-declarations-must-exist:
+    description: Path parameter declarations cannot be empty, ex.`/companies/{}` is invalid.
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "{}"
+    tags:
+    - given
+  path-keys-no-trailing-slash:
+    description: paths should not end with a slash.
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: ".+\\/$"
+    tags:
+    - given
+  path-not-include-query:
+    description: given keys should not include a query string.
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+    tags:
+    - given
+  tag-description:
+    description: Tag object should have a `description`.
+    recommended: false
+    type: style
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+   
+  asyncapi-api-servers:
+    description: AsyncAPI `servers` must be present and non-empty array.
+    recommended: true
+    given: "$"
+    then:
+      field: servers
+      function: schema
+      functionOptions:
+        schema:
+          items:
+            type: object
+          minItems: 1
+          type: array
+
+  asyncapi-operation-security-defined:
+    description: Operation `security` values must match a scheme defined in the `components.securitySchemes`
+      object.
+    recommended: true
+    type: validation
+    given: "$"
+    then:
+      function: oasOpSecurityDefined
+      functionOptions:
+        schemesPath:
+        - components
+        - securitySchemes
+    tags:
+    - operation
+  asyncapi-parameter-description:
+    description: Parameter objects should have a `description`.
+    recommended: false
+    given: "$..['parameters'].[?(@.in)]"
+    then:
+      field: description
+      function: truthy
+    tags:
+    - parameters
+  asyncapi-server-not-example.com:
+    description: Server URL should not point at example.com.
+    recommended: false
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: example\.com
+  asyncapi-server-trailing-slash:
+    description: Server URL should not have a trailing slash.
+    recommended: true
+    type: style
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+  asyncapi-valid-schema-example:
+    description: Examples must be valid against their defined schema.
+    message: "{{error}}"
+    severity: error
+    recommended: false
+    type: validation
+    given: "$.components.schemas..[?(@property !== 'properties' && @.example && (@.type
+      || @.format || @.$ref))]"
+    then:
+      function: schemaPath
+      functionOptions:
+        field: example
+        schemaPath: "$"  
+  asyncapi-schema:
+    description: Validate structure of AsyncAPI v2.0.0 Specification.
+    message: "{{error}}"
+    severity: error
+    recommended: true
+    type: validation
+    given: "$"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          "$ref": "./schemas/asyncapi-2.0.0.json"
+
+  asyncapi-unused-components-schema:
+    description: Potentially unused components schema has been detected.
+    recommended: true
+    type: style
+    resolved: false
+    given: "$.components.schemas"
+    then:
+      function: unreferencedReusableObject
+      functionOptions:
+        reusableObjectsLocation: "#/components/schemas"
 
   # TODO
+
+  # From Fran
+
+  # contact info
+
+  # certain protocols dont allow specific characters on channel names (find out which?)
+
+  # amqp using dots as a seperator
+
+#   Always add a name to your messages. It will help you identify your messages when reused in many places. More information: https://github.com/asyncapi/asyncapi/blob/master/versions/2.0.0/asyncapi.md#messageObjectName.
+# Always add a title to your messages. It will help you identify your messages when reused in many places. More information: https://github.com/asyncapi/asyncapi/blob/master/versions/2.0.0/asyncapi.md#messageObjectTitle.
+# When protocol is kafka, trigger a warning saying that certain characters are not allowed in Kafka topics. Source: https://github.com/apache/kafka/blob/0.10.2/core/src/main/scala/kafka/common/Topic.scala#L29
+# When protocol is amqp, trigger a info/warning when using dots in the channel name. Info should say something like: use slashes instead of dots as the separator of your topic names. Tooling will convert this slashes to dots for you.
 
   # Any of this stuff relevant for AsyncAPI?
 
@@ -31,12 +348,3 @@ rules: {}
   #     function: pattern
   #     functionOptions:
   #       match: "^([a-z0-9-]+)$"
-
-  # # Don't make people guess about what your parameters are
-  # parameter-description:
-  #   description: Parameters must have a description.
-  #   recommended: true
-  #   given: '$..properties.*'
-  #   then:
-  #     field: description
-  #     function: truthy
