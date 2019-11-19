@@ -3,30 +3,6 @@
 
 rules: 
 
-  #  operation-2xx-response:
-  #    description: Operation must have at least one `2xx` response.
-  #    recommended: true
-  #    type: style
-  #    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property ===
-  #      'post' || @property === 'delete' || @property === 'options' || @property ===
-  #      'head' || @property === 'patch' || @property === 'trace' )]"
-  #    then:
-  #      field: responses
-  #      function: oasOp2xxResponse
-  #    tags:
-  #    - operation
-  #  oas2-operation-formData-consume-check:
-  #    description: 'Operations with an `in: formData` parameter must include `application/x-www-form-urlencoded`
-  #      or `multipart/form-data` in their `consumes` property.'
-  #    recommended: true
-  #    type: validation
-  #    given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property ===
-  #      'post' || @property === 'delete' || @property === 'options' || @property ===
-  #      'head' || @property === 'patch' || @property === 'trace' )]"
-  #    then:
-  #      function: oasOpFormDataConsumeCheck
-  #    tags:
-  #    - operation
   #  operation-operationId-unique:
   #    description: Every operation must have a unique `operationId`.
   #    recommended: true
@@ -216,8 +192,8 @@ rules:
       field: description
       function: truthy
    
-  asyncapi-api-servers:
-    description: AsyncAPI `servers` must be present and non-empty array.
+  asyncapi-servers:
+    description: Define at least one server.
     recommended: true
     given: "$"
     then:
@@ -225,29 +201,26 @@ rules:
       function: schema
       functionOptions:
         schema:
-          items:
-            type: object
-          minItems: 1
-          type: array
+          type: object
+          minProperties: 1
 
-  asyncapi-operation-security-defined:
-    description: Operation `security` values must match a scheme defined in the `components.securitySchemes`
-      object.
-    recommended: true
-    type: validation
-    given: "$"
-    then:
-      function: oasOpSecurityDefined
-      functionOptions:
-        schemesPath:
-        - components
-        - securitySchemes
-    tags:
-    - operation
+  # asyncapi-operation-security-defined:
+  #   description: Operation `security` values must match a scheme defined in the `components.securitySchemes`
+  #     object.
+  #   recommended: true
+  #   type: validation
+  #   given: "$"
+  #   then:
+  #     function: oasOpSecurityDefined
+  #     functionOptions:
+  #       schemesPath:
+  #       - components
+  #       - securitySchemes
+
   asyncapi-parameter-description:
     description: Parameter objects should have a `description`.
     recommended: false
-    given: "$..['parameters'].[?(@.in)]"
+    given: "$..['parameters']"
     then:
       field: description
       function: truthy
