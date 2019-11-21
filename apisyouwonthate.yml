@@ -83,3 +83,17 @@ rules:
       function: pattern
       functionOptions:
         match: "/^([A-Z][a-z0-9]-)*([A-Z][a-z0-9])+/"
+
+  # Author: Andrzej (https://github.com/jerzyn)
+  oas3-hosts-https-only: # checks how does the servers array values start
+    description: "ALL requests MUST go through `https` protocol only"
+    formats:
+      - oas3
+    recommended: true
+    severity: error
+    message: "Servers MUST be https and no other protocol is allowed."
+    given: $.servers..url
+    then:
+      function: pattern
+      functionOptions:
+        match: "/^https:[a-zA-Z0-9./_@-~]+/"
