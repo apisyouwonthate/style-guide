@@ -97,3 +97,17 @@ rules:
       function: pattern
       functionOptions:
         match: "/^https:[a-zA-Z0-9./_@-~]+/"
+  
+  # Author: Andrzej (https://github.com/jerzyn)
+  request-support-json-oas3:
+    description: Every request SHOULD support `application/json` media type
+    formats:
+      - oas3
+    recommended: true
+    severity: error
+    message: "{{description}}: {{error}}"
+    given: $.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^
+    then:
+      function: pattern
+      functionOptions:
+        match: falsy
