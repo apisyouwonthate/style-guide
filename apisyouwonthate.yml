@@ -99,7 +99,7 @@ rules:
         match: "/^https:/"
   
   # Author: Andrzej (https://github.com/jerzyn)
-  request-support-json-oas3:
+  oas3-request-support-json
     description: Every request SHOULD support `application/json` media type
     formats:
       - oas3
