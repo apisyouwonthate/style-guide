@@ -96,7 +96,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "/^https:[a-zA-Z0-9./_@-~]+/"
+        match: "/^https:/"
   
   # Author: Andrzej (https://github.com/jerzyn)
   request-support-json-oas3:
