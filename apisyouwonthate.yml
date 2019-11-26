@@ -70,7 +70,7 @@ rules:
             type: string
             enum: ["https"]
           maxItems: 1
-
+          
   # Author: Andrzej (https://github.com/jerzyn)
   request-GET-no-body:
     description: A `GET` request MUST NOT accept a `body` parameter
@@ -81,3 +81,42 @@ rules:
       function: pattern
       functionOptions:
         notMatch: "/^body$/"
+
+  # Author: Andrzej (https://github.com/jerzyn)
+  headers-hyphenated-pascal-case:
+    description: All `HTTP` headers MUST use `Hyphenated-Pascal-Case` notation
+    severity: error
+    given: "$..parameters[?(@.in == 'header')].name"
+    message: "'HTTP' headers MUST follow 'Hyphenated-Pascal-Case' notation"
+    recommended: true
+    type: style
+    then: 
+      function: pattern
+      functionOptions:
+        match: "/^([A-Z][a-z0-9]-)*([A-Z][a-z0-9])+/"
+
+  # Author: Andrzej (https://github.com/jerzyn)
+  oas3-hosts-https-only:
+    description: "ALL requests MUST go through `https` protocol only"
+    formats:
+      - oas3
+    recommended: true
+    severity: error
+    message: "Servers MUST be https and no other protocol is allowed."
+    given: $.servers..url
+    then:
+      function: pattern
+      functionOptions:
+        match: "/^https:/"
+  
+  # Author: Andrzej (https://github.com/jerzyn)
+  oas3-request-support-json:
+    description: Every request SHOULD support `application/json` media type
+    formats:
+      - oas3
+    recommended: true
+    severity: warn
+    message: "{{description}}: {{error}}"
+    given: $.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^
+    then:
+      function: falsy
