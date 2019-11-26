@@ -70,6 +70,17 @@ rules:
             type: string
             enum: ["https"]
           maxItems: 1
+          
+  # Author: Andrzej (https://github.com/jerzyn)
+  request-GET-no-body:
+    description: A `GET` request MUST NOT accept a `body` parameter
+    severity: error
+    recommended: true
+    given: $.paths..get.parameters..in
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/^body$/"
 
   # Author: Andrzej (https://github.com/jerzyn)
   headers-hyphenated-pascal-case:
@@ -85,7 +96,7 @@ rules:
         match: "/^([A-Z][a-z0-9]-)*([A-Z][a-z0-9])+/"
 
   # Author: Andrzej (https://github.com/jerzyn)
-  oas3-hosts-https-only: # checks how does the servers array values start
+  oas3-hosts-https-only:
     description: "ALL requests MUST go through `https` protocol only"
     formats:
       - oas3
@@ -96,15 +107,15 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "/^https:[a-zA-Z0-9./_@-~]+/"
+        match: "/^https:/"
   
   # Author: Andrzej (https://github.com/jerzyn)
-  request-support-json-oas3:
+  oas3-request-support-json:
     description: Every request SHOULD support `application/json` media type
     formats:
       - oas3
     recommended: true
-    severity: error
+    severity: warn
     message: "{{description}}: {{error}}"
     given: $.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^
     then:
