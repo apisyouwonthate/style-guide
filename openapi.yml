@@ -51,12 +51,3 @@ rules:
       function: pattern
       functionOptions:
         match: "^([a-z0-9-]+)$"
-
-  # Don't make people guess about what your parameters are
-  parameter-description:
-    description: Parameters must have a description.
-    recommended: true
-    given: '$..properties.*'
-    then:
-      field: description
-      function: truthy

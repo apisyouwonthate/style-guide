@@ -10,7 +10,7 @@
 
 # No global version in url or header 
 
-# Correct error response format (JSO:API or RFC 7807)
+# Correct error response format (JSON:API or RFC 7807)
 
 # Mime type should have "; charset=utf-8"
 
@@ -33,7 +33,6 @@ rules:
     description: Should paths be kebab-case.
     message: '{{property}} is not kebab-case: {{error}}'
     severity: warn
-    recommended: true
     given: $.paths[*]~
     then:
       function: pattern
@@ -43,8 +42,6 @@ rules:
   no-x-headers:
     description: "Please do not use headers with X-"
     message: "Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648"
-    recommended: true
-    type: style
     # TODO add encoding headers too "$..content.*.encoding.*.headers"
     given: "$..parameters.[?(@.in === 'header')].name"
     then:
@@ -55,7 +52,6 @@ rules:
   # Author: Andrzej (https://github.com/jerzyn)
   oas2-hosts-https-only:
     description: "ALL requests MUST go through `https` protocol only"
-    recommended: true
     severity: error
     formats: [oas2]
     type: "style"
@@ -75,7 +71,6 @@ rules:
   request-GET-no-body:
     description: A `GET` request MUST NOT accept a `body` parameter
     severity: error
-    recommended: true
     given: $.paths..get.parameters..in
     then:
       function: pattern
@@ -88,7 +83,6 @@ rules:
     severity: error
     given: "$..parameters[?(@.in == 'header')].name"
     message: "'HTTP' headers MUST follow 'Hyphenated-Pascal-Case' notation"
-    recommended: true
     type: style
     then: 
       function: pattern
@@ -100,7 +94,6 @@ rules:
     description: "ALL requests MUST go through `https` protocol only"
     formats:
       - oas3
-    recommended: true
     severity: error
     message: "Servers MUST be https and no other protocol is allowed."
     given: $.servers..url
@@ -114,7 +107,6 @@ rules:
     description: Every request SHOULD support `application/json` media type
     formats:
       - oas3
-    recommended: true
     severity: warn
     message: "{{description}}: {{error}}"
     given: $.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^
