@@ -51,3 +51,14 @@ rules:
       function: pattern
       functionOptions:
         match: "^([a-z0-9-]+)$"
+
+  # Authors: Lorna Mitchell  and @mheap
+  semver:
+    severity: error
+    recommended: true
+    message: Please follow semantic versioning. {{value}} is not a valid version.
+    given: $.info.version
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([0-9]+.[0-9]+.[0-9]+)$"

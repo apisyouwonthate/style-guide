@@ -3,12 +3,11 @@
 These days API Linting (or creating [automated style guides](https://www.apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-and-grpc)) is all the rage. 
 
 Spectral was created to make this simple with OpenAPI and AsyncAPI, powering linting in editors, as a CLI tool, in continuous integration, etc., and comes with its [own set of baked 
-in OpenAPI v2/v3 rules](https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/reference/openapi-rules.md). 
+in OpenAPI v2/v3 rules](https://meta.stoplight.io/docs/spectral/docs/reference/openapi-rules.md). 
 
 This repo is the start of a community powered collection of style guides (a.k.a rulesets), which you can use as well as, or instead of, those rules.
 
 - [APIs You Won't Hate](./apisyouwonthate.yml) - Super opinionated HTTP API advice.
-- [AsyncAPI](./asyncapi.yml) - Make more useful and consistent AsyncAPI files.
 - [FHIR](./fhir.yml) - FHIR is a standard for health care data exchange, published by HL7.
 - [OpenAPI](./openapi.yml) - Make more useful and consistent OpenAPI files with this more experimental set of rules than `spectral:oas`.
 
