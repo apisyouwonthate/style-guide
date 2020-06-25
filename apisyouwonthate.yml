@@ -30,7 +30,7 @@ rules:
     then:
       field: get
       function: truthy
- 
+
   # paths-kebab-case:
   #   description: Should paths be kebab-case.
   #   message: '{{property}} should be kebab-case (lower case and separated with hyphens)'
@@ -44,6 +44,17 @@ rules:
   #         char: /
   #         allowLeading: true
 
+  no-http-basic:
+    description: "Consider a more secure alternative to HTTP Basic."
+    message: "HTTP Basic is a pretty insecure way to pass credentials around, please consider an alternative."
+    severity: warn
+    given: $.components.securitySchemes[*]
+    then:
+      field: scheme
+      function: pattern
+      functionOptions:
+        notMatch: basic
+ 
   no-x-headers:
     description: "Please do not use headers with X-"
     message: "Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648"
@@ -119,7 +130,7 @@ rules:
 
   # Author: Phil Sturgeon (https://github.com/philsturgeon)
   unknown-error-format:
-    description: "Every error response SHOULD support either RFC 7807 or the JSON:API Error format."
+    description: "Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format."
     formats:
       - oas3
     severity: warn
