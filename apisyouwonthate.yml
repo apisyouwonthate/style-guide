@@ -10,34 +10,39 @@
 
 # No global version in url or header 
 
-# Correct error response format (JSON:API or RFC 7807)
-
 # Mime type should have "; charset=utf-8"
-
-# No path defined for /
 
 # No "(e/E)rror" in 2xx
 
-# If a DELETE method is successfully applied, the origin server SHOULD
-#    send a 202 (Accepted) status code if the action will likely succeed
-#    but has not yet been enacted, a 204 (No Content) status code if the
-#    action has been enacted and no further information is to be supplied,
-#    or a 200 (OK) status code if the action has been enacted and the
-#    response message includes a representation describing the status.
-
-# header-parameter-names-kebab-case': {
-#    given: "$..parameters[?(@.in === 'header')]",
-
 rules:
-  paths-kebab-case:
-    description: Should paths be kebab-case.
-    message: '{{property}} is not kebab-case: {{error}}'
-    severity: warn
-    given: $.paths[*]~
+  api-home:
+    description: APIs MUST have a root path defined (`/`), to stop forcing all API consumers to visit documentation for basic interactions.
+    severity: error
+    given: $.paths
     then:
-      function: pattern
-      functionOptions:
-        match: "^(\/[a-z0-9-{}]+)+$"
+      field: /
+      function: truthy
+ 
+  api-home-get:
+    description: APIs root path MUST have a GET defined, otherwise people won't know how to get it.
+    severity: error
+    given: $.paths[/]
+    then:
+      field: get
+      function: truthy
+ 
+  # paths-kebab-case:
+  #   description: Should paths be kebab-case.
+  #   message: '{{property}} should be kebab-case (lower case and separated with hyphens)'
+  #   severity: warn
+  #   given: $.paths[*]~
+  #   then:
+  #     function: casing
+  #     functionOptions:
+  #       type: "kebab"
+  #       separator: 
+  #         char: /
+  #         allowLeading: true
 
   no-x-headers:
     description: "Please do not use headers with X-"
