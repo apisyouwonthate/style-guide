@@ -39,7 +39,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(\/[a-z0-9-.]+|\/{[a-zA-Z0-9_]+})+$"
+        match: "^(\/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$"
 
   no-http-basic:
     description: "Consider a more secure alternative to HTTP Basic."
