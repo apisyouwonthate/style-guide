@@ -17,7 +17,7 @@
 rules:
   api-home:
     description: APIs MUST have a root path defined (`/`), to stop forcing all API consumers to visit documentation for basic interactions.
-    severity: error
+    severity: warn
     given: $.paths
     then:
       field: /
@@ -25,7 +25,7 @@ rules:
  
   api-home-get:
     description: APIs root path MUST have a GET defined, otherwise people won't know how to get it.
-    severity: error
+    severity: warn
     given: $.paths[/]
     then:
       field: get
@@ -44,7 +44,7 @@ rules:
   no-http-basic:
     description: "Consider a more secure alternative to HTTP Basic."
     message: "HTTP Basic is a pretty insecure way to pass credentials around, please consider an alternative."
-    severity: warn
+    severity: error
     given: $.components.securitySchemes[*]
     then:
       field: scheme
@@ -60,16 +60,35 @@ rules:
       function: pattern
       functionOptions:
         notMatch: '^(x|X)-'
+
+  no-x-response-headers:
+    description: "Please do not use headers with X-"
+    message: "Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648"
+    given: "$..headers.*~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: '^(x|X)-'
           
   # Author: Andrzej (https://github.com/jerzyn)
-  request-GET-no-body:
+  oas2-request-GET-no-body-oas2:
     description: A `GET` request MUST NOT accept a `body` parameter
     severity: error
+    format: [oas2]
     given: $.paths..get.parameters..in
     then:
       function: pattern
       functionOptions:
         notMatch: "/^body$/"
+        
+  # Author: Andrzej (https://github.com/jerzyn)
+  request-GET-no-body-oas3:
+    description: A `GET` request MUST NOT accept a request body
+    severity: error
+    format: [oas3]
+    given: $.paths..get.requestBody
+    then:
+      function: undefined
 
   # Author: Andrzej (https://github.com/jerzyn)
   headers-hyphenated-pascal-case:
