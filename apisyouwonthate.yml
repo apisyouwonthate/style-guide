@@ -71,7 +71,7 @@ rules:
         notMatch: '^(x|X)-'
           
   # Author: Andrzej (https://github.com/jerzyn)
-  oas2-request-GET-no-body-oas2:
+  request-GET-no-body-oas2:
     description: A `GET` request MUST NOT accept a `body` parameter
     severity: error
     format: [oas2]
@@ -103,7 +103,7 @@ rules:
         match: "/^([A-Z][a-z0-9]-)*([A-Z][a-z0-9])+/"
 
   # Author: Andrzej (https://github.com/jerzyn)
-  oas2-hosts-https-only:
+  hosts-https-only-oas2:
     description: "ALL requests MUST go through `https` protocol only"
     severity: error
     formats: [oas2]
@@ -121,10 +121,9 @@ rules:
           maxItems: 1
 
   # Author: Andrzej (https://github.com/jerzyn)
-  oas3-hosts-https-only:
+  hosts-https-only-oas3:
     description: "ALL requests MUST go through `https` protocol only"
-    formats:
-      - oas3
+    formats: [oas3]
     severity: error
     message: "Servers MUST be https and no other protocol is allowed."
     given: $.servers..url
@@ -134,10 +133,9 @@ rules:
         match: "/^https:/"
   
   # Author: Andrzej (https://github.com/jerzyn)
-  oas3-request-support-json:
+  request-support-json-oas3:
     description: Every request SHOULD support `application/json` media type
-    formats:
-      - oas3
+    formats: [oas3]
     severity: warn
     message: "{{description}}: {{error}}"
     given: $.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^
@@ -147,8 +145,7 @@ rules:
   # Author: Phil Sturgeon (https://github.com/philsturgeon)
   unknown-error-format:
     description: "Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format."
-    formats:
-      - oas3
+    formats: [oas3]
     severity: warn
     given: $.paths.[*].responses[?(@property.match(/^(4|5)/))].content.*~
     then:
