@@ -6,8 +6,6 @@
 # Make sure every post/put/delete/patch endpoint has some sort of security
 # (OAuth 2, API Key, but not both)
 
-# Numeric IDs are awful, use a UUID
-
 # No global version in url or header 
 
 # Mime type should have "; charset=utf-8"
@@ -40,6 +38,23 @@ rules:
       function: pattern
       functionOptions:
         match: "^(\/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$"
+
+  no-numeric-ids:
+    description: Please avoid exposing IDs as an integer, UUIDs are preferred.
+    severity: error
+    given: $.paths..parameters[*].[?(@property === "name" && (@ === "id" || @.match(/(_id|Id)$/)))]^.schema
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          not:
+            properties:
+              type:
+                const: integer
+          properties:
+            format:
+              const: uuid
 
   no-http-basic:
     description: "Consider a more secure alternative to HTTP Basic."
