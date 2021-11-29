@@ -89,7 +89,7 @@ rules:
   request-GET-no-body-oas2:
     description: A `GET` request MUST NOT accept a `body` parameter
     severity: error
-    format: [oas2]
+    formats: [oas2]
     given: $.paths..get.parameters..in
     then:
       function: pattern
@@ -100,7 +100,7 @@ rules:
   request-GET-no-body-oas3:
     description: A `GET` request MUST NOT accept a request body
     severity: error
-    format: [oas3]
+    formats: [oas3]
     given: $.paths..get.requestBody
     then:
       function: undefined
