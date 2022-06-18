@@ -35,9 +35,9 @@ rules:
     type: style
     given: '$.components.schemas.*~'
     then:
-      function: pattern
+      function: casing
       functionOptions:
-        match: '^[A-Z][a-zA-Z0-9]*$'
+        type: pascal
 
   # Keep operationIds (which often go in the URL) as kebab case
   operationIds-kebab-case:
@@ -48,9 +48,9 @@ rules:
     given: "$.paths.*[?( @property === 'get' || @property === 'put' || @property === 'post' || @property === 'delete' || @property === 'options' || @property === 'head' || @property === 'patch' || @property === 'trace' )]"
     then:
       field: operationId
-      function: pattern
+      function: casing
       functionOptions:
-        match: "^([a-z0-9-]+)$"
+        type: kebab
 
   # Authors: Lorna Mitchell  and @mheap
   semver:
