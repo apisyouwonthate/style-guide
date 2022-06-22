@@ -6,37 +6,38 @@
 # Make sure every post/put/delete/patch endpoint has some sort of security
 # (OAuth 2, API Key, but not both)
 
-# No global version in url or header 
-
 # Mime type should have "; charset=utf-8"
 
 # No "(e/E)rror" in 2xx
 
 rules:
   api-home:
-    description: APIs MUST have a root path defined (`/`), to stop forcing all API consumers to visit documentation for basic interactions.
+    description: APIs MUST have a root path (`/`) defined.
+    message: Stop forcing all API consumers to visit documentation for basic interactions when the API could do that itself.
     severity: warn
     given: $.paths
     then:
       field: /
       function: truthy
 
-  api-health:
-    description: APIs MUST have a root path defined (`/health`), so its easy to see how the API is up and running correctly.
-    severity: error
-    given: $.paths
-    then:
-      field: /health
-      function: truthy
- 
   api-home-get:
-    description: APIs root path MUST have a GET defined, otherwise people won't know how to get it.
+    description: APIs root path (`/`) MUST have a GET operation.
+    message: Otherwise people won't know how to get it.
     severity: warn
     given: $.paths[/]
     then:
       field: get
       function: truthy
 
+  api-health:
+    description: APIs MUST have a health path (`/health`) defined.
+    message: Creating a `/health` endpoint is a simple solution for pull-based monitoring and manually checking the status of an API.
+    severity: error
+    given: $.paths
+    then:
+      field: /health
+      function: truthy
+ 
   paths-kebab-case:
     description: Should paths be kebab-case.
     message: '{{property}} should be kebab-case (lower case and separated with hyphens)'
@@ -179,6 +180,7 @@ rules:
         - application/problem+xml
         - application/problem+json
 
+  # Author: Nauman Ali (https://github.com/naumanali-stoplight)
   no-global-versioning:
     description: Using global versions just forces all your clients to do a lot more work for each upgrade. Please consider using API Evolution instead.
     message: Server URL should not contain global versions
