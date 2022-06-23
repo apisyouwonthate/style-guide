@@ -8,7 +8,6 @@ in OpenAPI v2/v3 rules](https://meta.stoplight.io/docs/spectral/docs/reference/o
 This repo is the start of a community powered collection of style guides (a.k.a rulesets), which you can use as well as, or instead of, those rules.
 
 - [APIs You Won't Hate](./apisyouwonthate.yml) - Super opinionated HTTP API advice.
-- [FHIR](./fhir.yml) - FHIR is a standard for health care data exchange, published by HL7.
 - [OpenAPI](./openapi.yml) - Make more useful and consistent OpenAPI files with this more experimental set of rules than `spectral:oas`.
 
 All of these rulesets have plenty of rules to be done, all mentioned in comments. Feel free to dig in and send PRs. 

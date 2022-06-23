@@ -38,6 +38,18 @@ rules:
       field: /health
       function: truthy
  
+   api-health-format:
+    description: Health path (`/heath`) SHOULD support Health Check Response Format"
+    message: "Let's use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check"
+    formats: [oas3]
+    severity: warn
+    given: $.paths.[/health].responses[*].content.*~
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+        - application/vnd.health+json
+
   paths-kebab-case:
     description: Should paths be kebab-case.
     message: '{{property}} should be kebab-case (lower case and separated with hyphens)'
@@ -167,11 +179,11 @@ rules:
       function: falsy
 
   # Author: Phil Sturgeon (https://github.com/philsturgeon)
-  unknown-error-format:
+  no-unknown-error-format:
     description: "Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format."
     formats: [oas3]
     severity: warn
-    given: $.paths.[*].responses[?(@property.match(/^(4|5)/))].content.*~
+    given: $.paths.[*]..responses[?(@property.match(/^(4|5)/))].content.*~
     then:
       function: enumeration
       functionOptions:
