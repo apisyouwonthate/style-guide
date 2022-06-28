@@ -1,0 +1,28 @@
+{
+  "name": "@apisyouwonthate/style-guide",
+  "version": "1.0.0",
+  "description": "Make your HTTP APIs better, faster, stronger, whether they are still being designed (API Design-First) or your organization has flopped various mismatched APIs into production and now you're thinking some consistency would be nice. Using Spectral and OpenAPI\"\"",
+  "main": "styleguide.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openapi-contrib/style-guides.git"
+  },
+  "keywords": [
+    "openapi",
+    "openapi3",
+    "openapi31",
+    "api-design"
+  ],
+  "author": "Phil Sturgeon <phil@apisyouwonthate.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/openapi-contrib/style-guides/issues"
+  },
+  "homepage": "https://github.com/openapi-contrib/style-guides#readme"
+}
