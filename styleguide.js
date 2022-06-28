@@ -33,7 +33,7 @@ export default {
     'api-health': {
       description: 'APIs MUST have a health path (`/health`) defined.',
       message: 'Creating a `/health` endpoint is a simple solution for pull-based monitoring and manually checking the status of an API.',
-      severity: 'error',
+      severity: 'warning',
       given: "$.paths",
       then: {
         field: "/health",
