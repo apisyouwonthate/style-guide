@@ -1,8 +1,0 @@
-# @Deprecated
-# Pick and chose from the specific rulesets/style-guides in this repo
-
-extends:
-  - ./apisyouwonthate.yml
-  - ./openapi.yml
-
-rules: {}
