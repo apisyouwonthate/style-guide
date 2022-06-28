@@ -37,32 +37,23 @@ You should see some output like this, letting you know there are a few more stan
  112:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format.   paths./v1/orders/{order}.get.responses[404].content.application/json
 ```
 
-Now you have some things to work on for your API. Thankfully this lot only looks like warnings, so they can be got to those in time (it's not going to [fail continuous integration](https://meta.stoplight.io/docs/spectral/ZG9jOjExNTMyOTAx-continuous-integration) unless [you want it to](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg1-spectral-cli#error-results)).
+Now you have some things to work on for your API. Thankfully this lot only looks like warnings, so they can be got to those in time. Warnings are not going to [fail continuous integration](https://meta.stoplight.io/docs/spectral/ZG9jOjExNTMyOTAx-continuous-integration) (unless [you want them to](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg1-spectral-cli#error-results)).
 
 ## Backstory
 
-You could write your API Style Guide as a giant manifesto and hope people see it, or you could [automate your API style guide](https://www.apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-and-grpc)) using a tool like Spectral so that your API Style Guide is enforced at the pull request level. This is one of many parts of a successful API Governance program.
+You could write your API Style Guide as a giant manifesto and hope people see it, or you could [automate your API style guide](https://www.apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-and-grpc) using a tool like Spectral so that your API Style Guide is enforced at the pull request level. This is an integral part of any successful API Governance program, otherwise you're all just wasting time covering the basics far too late in the game.
 
 Spectral runs on top of OpenAPI and AsyncAPI, powering linting in editors, as a CLI tool, in continuous integration, etc., and comes with its [own set of baked 
 in OpenAPI v2/v3 rules](https://meta.stoplight.io/docs/spectral/docs/reference/openapi-rules.md). Making rules about how to write OpenAPI can help beginners write better OpenAPI, but its real power is using rules to make the actual APIs better and more consistent, before there is any programming involved.
 
-This NPM package brings together all sorts of advice found in the books and blog posts from [APIs You Won't Hate](https://apisyouwonthate.com) books. If you apply this to APIs in production, this is basically [Phil Sturgeon](https://philsturgeon.com/) judging your API for free. But if you can get this API Style Guide involved in the API Design-First workflow, you're getting free advice on how to design a better API before you waste any time coding, which then means fewer BC breaks as you fix things.
+This NPM package brings together all sorts of advice found in the books and blog posts from [APIs You Won't Hate](https://apisyouwonthate.com) books. If you apply this to APIs in production, this is basically [Phil Sturgeon](https://philsturgeon.com/) judging your API for free. But if you can get this API Style Guide involved in the API Design-First workflow, you're getting free advice on how to design a better API before you waste any time coding, which then means fewer backwards-compatibility breaks as you fix things.
 
 There are [a bunch of other rulesets](https://github.com/stoplightio/spectral-rulesets) you can check out if you feel like making your own API Style Guides, or feel like contributing some new rules here via a pull request.
 
-These two are pretty good:
-
-- [Adidas](https://github.com/adidas/api-guidelines/blob/master/.spectral.yml)
-- [Digital Ocean](https://github.com/digitalocean/openapi/blob/main/spectral/ruleset.yml)
-
 ## 🎉 Thanks
 
-- [Mike Ralphson](https://github.com/MikeRalphson) for kicking off the Spectral CLI and his work on Speccy
-- [Jamund Ferguson](https://github.com/xjamundx) for JUnit formatter
-- [Sindre Sorhus](https://github.com/sindresorhus) for Stylish formatter
-- [Ava Thorn](https://github.com/amthorn) for the Pretty formatter
-- Julian Laval for HTML formatter
-- [@nulltoken](https://github.com/nulltoken) for a whole bunch of amazing features
+- [Andrzej](https://github.com/jerzyn) - Great rules contributed to the Adidas style guide.
+- [Nauman Ali](https://github.com/naumanali-stoplight) - Creating the `no-global-versioning` rule as part of his excellent [style guide blog post series](https://blog.stoplight.io/consistent-api-urls-with-openapi-and-style-guides).
 
 ## 📜 License
 
