@@ -42,12 +42,12 @@ export default {
     'api-health': {
       description: 'APIs MUST have a health path (`/health`) defined.',
       message: 'Creating a `/health` endpoint is a simple solution for pull-based monitoring and manually checking the status of an API.',
-      severity: 'warning',
       given: "$.paths",
       then: {
         field: "/health",
         function: truthy,
-      }
+      },
+      severity: 'warn',
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -55,7 +55,6 @@ export default {
       description: 'Health path (`/heath`) SHOULD support Health Check Response Format',
       message: 'Use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check',
       formats: [oas3],
-      severity: 'warn',
       given: "$.paths.[/health].responses[*].content.*~",
       then: {
         function: enumeration,
@@ -64,21 +63,22 @@ export default {
             "application/vnd.health+json"
           ]
         }
-      }
+      },
+      severity: 'warn',
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'paths-kebab-case': {
       description: 'Should paths be kebab-case.',
       message: '{{property}} should be kebab-case (lower case and separated with hyphens)',
-      severity: 'warn',
       given: "$.paths[*]~",
       then: {
         function: pattern,
         functionOptions: {
           match: '^(/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$'
         }
-      }
+      },
+      severity: 'warn',
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
