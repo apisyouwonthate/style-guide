@@ -8,6 +8,9 @@ import { oas2, oas3 } from "@stoplight/spectral-formats";
 // TODO Mime type should have "; charset=utf-8"
 // TODO No "(e/E)rror" in 2xx
 
+// https://apistylebook.stoplight.io/docs/url-guidelines
+// paths-no-file-extensions
+
 export default {
   rules: {
 
