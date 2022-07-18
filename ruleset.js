@@ -243,7 +243,7 @@ export default {
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'no-unknown-error-format': {
-      description: 'Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format.',
+      description: 'Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format.',
       given: "$.paths.[*]..responses[?(@property.match(/^(4|5)/))].content.*~",
       then: {
         function: enumeration,
