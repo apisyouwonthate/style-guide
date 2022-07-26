@@ -20,6 +20,12 @@ cd ~/src/<your-api>
 echo 'extends: ["@apisyouwonthate/style-guide"]' > .spectral.yaml
 ```
 
+_If you're using VS Code or Stoplight Studio then the NPM modules will not be available. Instead you can use the CDN hosted version:_
+
+```
+echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide@1.1/ruleset.js"]' > .spectral.yaml
+```
+
 Next, use Spectral CLI to lint against your OpenAPI description. Don't have any OpenAPI? [Record some HTTP traffic to make OpenAPI](https://apisyouwonthate.com/blog/creating-openapi-from-http-traffic) and then you can switch to API Design-First going forwards.
 
 ```
