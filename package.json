@@ -27,6 +27,11 @@
   "homepage": "https://github.com/openapi-contrib/style-guides#readme",
   "dependencies": {
     "@stoplight/spectral-formats": "^1.2.0",
-    "@stoplight/spectral-functions": "^1.6.1"
+    "@stoplight/spectral-functions": "^1.6.1",
+    "@stoplight/types": "^13.6.0",
+    "@types/jest": "^28.0",
+    "jest": "^28.0",
+    "jest-mock": "^28.0",
+    "ts-jest": "^28.0"
   }
 }
