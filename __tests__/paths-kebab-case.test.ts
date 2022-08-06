@@ -7,7 +7,7 @@ testRule('paths-kebab-case', [
     document: {
       openapi: '3.1.0',
       info: { version: '1.0', contact: {} },
-      paths: { '/': {} },
+      paths: { '/this-is-kebab-case': {} },
     },
     errors: [],
   },
@@ -17,22 +17,13 @@ testRule('paths-kebab-case', [
     document: {
       openapi: '3.1.0',
       info: { version: '1.0', contact: {} },
-      paths: {},
+      paths: { '/this_is_snake_case': {} },
     },
     errors: [
       {
-        message: 'Stop forcing all API consumers to visit documentation for basic interactions when the API could do that itself.',
-        path: ['paths'],
+        message: '/this_is_snake_case should be kebab-case (lower case and separated with hyphens).',
+        path: ['paths', '/this_is_snake_case'],
         severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
       },
     ],
   },

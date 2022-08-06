@@ -1,7 +1,7 @@
 import { DiagnosticSeverity } from '@stoplight/types';
 import testRule from './__helpers__/helper';
 
-const document = (contentType: string) => {
+const template = (contentType: string) => {
   return {
     openapi: '3.1.0',
     info: { version: '1.0', contact: {} },
@@ -26,25 +26,25 @@ const document = (contentType: string) => {
 testRule('no-unknown-error-format', [
   {
     name: 'valid error format (JSON:API)',
-    document: document("application/vnd.api+json"),
+    document: template("application/vnd.api+json"),
     errors: [],
   },
 
   {
     name: 'valid error format (RFC 7807, XML)',
-    document: document("application/problem+xml"),
+    document: template("application/problem+xml"),
     errors: [],
   },
 
   {
     name: 'valid error format (RFC 7807, JSON)',
-    document: document("application/problem+json"),
+    document: template("application/problem+json"),
     errors: [],
   },
 
   {
     name: 'invalid error format (plain JSON)',
-    document: document("application/json"),
+    document: template("application/json"),
     errors: [
       {
         message: 'Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format.',

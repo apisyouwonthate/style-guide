@@ -10,18 +10,22 @@ testRule("no-x-response-headers", [
 			paths: {
 				"/foo": {
 					get: {
+            parameters: [
+							{
+								name: "X-Doesnt-Matter",
+								in: "header",
+								description:
+									"Because OAS has two totally different ways of doing headers for request or response, this will be picked up by another rule.",
+								required: true,
+								schema: {
+									type: "string",
+								},
+							},
+						],
 						responses: {
 							"200": {
 								description: "ok",
 								headers: {
-									"RateLimit-Limit": {
-										description:
-											"standards are cool: https://www.ietf.org/archive/id/draft-polli-ratelimit-headers-02.html#name-ratelimit-limit",
-										schema: {
-											type: "string",
-											examples: ["100, 100;w=10"],
-										},
-									},
 									"Retry-After": {
 										description:
 											"How long the user agent should wait before making a follow-up request.",
@@ -57,22 +61,27 @@ testRule("no-x-response-headers", [
 			paths: {
 				"/foo": {
 					get: {
+            parameters: [
+							{
+								name: "X-Doesnt-Matter",
+								in: "header",
+								description:
+									"Because OAS has two totally different ways of doing headers for request or response, this will be picked up by another rule.",
+								required: true,
+								schema: {
+									type: "string",
+								},
+							},
+						],
 						responses: {
 							"200": {
 								description: "ok",
 								headers: {
-									"X-Rate-Limit": {
-										description: "calls per hour allowed by the user",
-										schema: {
-											type: "integer",
-											format: "int32",
-										},
-									},
 									"X-Expires-After": {
-										description: "date in UTC when token expires",
+										description:
+											"Some custom made header that could will confuse everyone and probably has a standard HTTP header already.",
 										schema: {
-											type: "string",
-											format: "date-time",
+                      type: "string",
 										},
 									},
 								},
@@ -83,28 +92,6 @@ testRule("no-x-response-headers", [
 			},
 		},
 		errors: [
-			{
-				message:
-					"Headers cannot start with X-, so please find a new name for X-Rate-Limit. More: https://tools.ietf.org/html/rfc6648.",
-				path: [
-					"paths",
-					"/foo",
-					"get",
-					"responses",
-					"200",
-					"headers",
-					"X-Rate-Limit",
-				],
-				severity: DiagnosticSeverity.Error,
-				range: {
-					start: expect.objectContaining({
-						line: 0,
-					}),
-					end: expect.objectContaining({
-						line: 0,
-					}),
-				},
-			},
 			{
 				message:
 					"Headers cannot start with X-, so please find a new name for X-Expires-After. More: https://tools.ietf.org/html/rfc6648.",
@@ -118,14 +105,6 @@ testRule("no-x-response-headers", [
 					"X-Expires-After",
 				],
 				severity: DiagnosticSeverity.Error,
-				range: {
-					start: expect.objectContaining({
-						line: 0,
-					}),
-					end: expect.objectContaining({
-						line: 0,
-					}),
-				},
 			},
 		],
 	},

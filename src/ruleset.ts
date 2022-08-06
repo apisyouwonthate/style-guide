@@ -1,8 +1,9 @@
 // These rules dictate actual content of the API: headers, URL conventions, and general 
 // Good Ideas™ for HTTP APIs, mainly from the books/blogs on apisyouwonthate.com
 
-import { enumeration, truthy, falsy, undefined as undefinedFunc, pattern, schema } from "@stoplight/spectral-functions";
+import { enumeration, length, truthy, undefined as undefinedFunc, pattern, schema } from "@stoplight/spectral-functions";
 import { oas2, oas3 } from "@stoplight/spectral-formats";
+import { DiagnosticSeverity } from "@stoplight/types";
 
 // TODO Make sure every post/put/delete/patch endpoint has some sort of security (OAuth 2, API Key, but not both)
 // TODO Mime type should have "; charset=utf-8"
@@ -23,7 +24,7 @@ export default {
         field: "/",
         function: truthy,
       },
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -35,7 +36,7 @@ export default {
         field: "get",
         function: truthy,
       },
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -47,7 +48,7 @@ export default {
         field: "/health",
         function: truthy,
       },
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -55,7 +56,7 @@ export default {
       description: 'Health path (`/heath`) SHOULD support Health Check Response Format',
       message: 'Use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check.',
       formats: [oas3],
-      given: "$.paths.[/health].responses[*].content.*~",
+      given: "$.paths.[/health]..responses[*].content.*~",
       then: {
         function: enumeration,
         functionOptions: {
@@ -64,7 +65,7 @@ export default {
           ]
         }
       },
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -78,7 +79,7 @@ export default {
           match: '^(/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$'
         }
       },
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -105,7 +106,7 @@ export default {
           }
         }
       },
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -120,7 +121,7 @@ export default {
           notMatch: 'basic'
         }
       },
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -134,7 +135,7 @@ export default {
           notMatch: '^(x|X)-'
         }
       },
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -148,9 +149,9 @@ export default {
           notMatch: '^(x|X)-'
         }
       },
-      severity: 'error',
-      formats: [oas3],
+      severity: DiagnosticSeverity.Error,
     },
+
     // Author: Andrzej (https://github.com/jerzyn)
     'request-GET-no-body-oas2': {
       description: 'A `GET` request MUST NOT accept a `body` parameter',
@@ -161,7 +162,7 @@ export default {
           notMatch: "/^body$/"
         }
       },
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
       formats: [oas2],
     },
 
@@ -173,22 +174,7 @@ export default {
         function: undefinedFunc,
       },
       formats: [oas3],
-      severity: 'error',
-    },
-
-    // Author: Andrzej (https://github.com/jerzyn)
-    'headers-hyphenated-pascal-case': {
-      description: 'All HTTP headers MUST use Hyphenated-Pascal-Case casing',
-      given: "$..parameters[?(@.in == 'header')].name",
-      message: 'HTTP headers have the first letter of each word capitalized, and each word should be separated by a hyphen.',
-      type: "style",
-      then: {
-        function: pattern,
-        functionOptions: {
-          match: '/^([A-Z][a-z0-9]-)*([A-Z][a-z0-9])+/'
-        }
-      },
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
     },
 
     // Author: Andrzej (https://github.com/jerzyn)
@@ -209,7 +195,7 @@ export default {
           }
         }
       },
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
       formats: [oas2],
     },
 
@@ -225,19 +211,19 @@ export default {
         }
       },
       formats: [oas3],
-      severity: 'error',
+      severity: DiagnosticSeverity.Error,
     },
 
     // Author: Andrzej (https://github.com/jerzyn)
     'request-support-json-oas3': {
       description: 'Every request SHOULD support `application/json` media type.',
-      message: '{{description}}: {{error}}',
-      given: "$.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^",
+      given: "$.paths.[*].requestBody.content[?(@property.match(/json/))]",
       then: {
-        function: falsy,
+        function: length,
+        min: 1,
       },
       formats: [oas3],
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
@@ -255,7 +241,7 @@ export default {
         }
       },
       formats: [oas3],
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     },
 
     // Author: Nauman Ali (https://github.com/naumanali-stoplight)
@@ -270,7 +256,7 @@ export default {
         }
       },
       formats: [oas3],
-      severity: 'warn',
+      severity: DiagnosticSeverity.Warning,
     }
   }
 };
