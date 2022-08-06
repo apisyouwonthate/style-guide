@@ -195,7 +195,7 @@ export default {
     'hosts-https-only-oas2': {
       description: 'ALL requests MUST go through `https` protocol only',
       type: "style",
-      message: 'Schemes MUST be https and no other value is allowed.',
+      message: 'Schemes MUST be https and no other protocol is allowed.',
       given: "$.schemes",
       then: {
         function: schema,
@@ -205,8 +205,7 @@ export default {
             items: {
               type: "string",
               const: "https",
-            },
-            "maxItems": 1
+            }
           }
         }
       },

@@ -14,7 +14,24 @@ testRule('no-global-versioning', [
   },
 
   {
-    name: 'invalid case',
+    name: 'an API that is getting ready to give its consumers a really bad time',
+    document: {
+      openapi: '3.1.0',
+      info: { version: '1.0', contact: {} },
+      paths: { '/': {} },
+      servers: [{ url: 'https://api.example.com/v1' }]
+    },
+    errors: [
+      {
+        message: 'Using global versions just forces all your clients to do a lot more work for each upgrade. Please consider using API Evolution instead. More: https://apisyouwonthate.com/blog/api-evolution-for-rest-http-apis.',
+        path: ['servers', '0', 'url'],
+        severity: DiagnosticSeverity.Warning,
+      },
+    ],
+  },
+
+  {
+    name: 'an API that got massively out of control as usual',
     document: {
       openapi: '3.1.0',
       info: { version: '1.0', contact: {} },
@@ -26,15 +43,6 @@ testRule('no-global-versioning', [
         message: 'Using global versions just forces all your clients to do a lot more work for each upgrade. Please consider using API Evolution instead. More: https://apisyouwonthate.com/blog/api-evolution-for-rest-http-apis.',
         path: ['servers', '0', 'url'],
         severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
       },
     ],
   },

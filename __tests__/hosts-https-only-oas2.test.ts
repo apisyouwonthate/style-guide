@@ -5,34 +5,65 @@ testRule('hosts-https-only-oas2', [
   {
     name: 'valid case',
     document: {
-      openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      swagger: '2.0',
+      info: { version: '1.0' },
       paths: { '/': {} },
+      host: 'example.com',
+      schemes: ['https'],
     },
     errors: [],
   },
 
   {
-    name: 'invalid case',
+    name: 'an invalid server.url using http',
     document: {
-      openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
-      paths: {},
+      swagger: '2.0',
+      info: { version: '1.0' },
+      paths: { '/': {} },
+      host: 'example.com',
+      schemes: ['http'],
     },
     errors: [
       {
-        message: 'Stop forcing all API consumers to visit documentation for basic interactions when the API could do that itself.',
-        path: ['paths'],
-        severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
+        message: 'Schemes MUST be https and no other protocol is allowed.',
+        path: ['schemes', '0'],
+        severity: DiagnosticSeverity.Error,
+      },
+    ],
+  },
+
+  {
+    name: 'an invalid server.url using http and https',
+    document: {
+      swagger: '2.0',
+      info: { version: '1.0' },
+      paths: { '/': {} },
+      host: 'example.com',
+      schemes: ['https', 'http'],
+    },
+    errors: [
+      {
+        message: 'Schemes MUST be https and no other protocol is allowed.',
+        path: ['schemes', '1'],
+        severity: DiagnosticSeverity.Error,
+      },
+    ],
+  },
+
+  {
+    name: 'an invalid server using ftp',
+    document: {
+      swagger: '2.0',
+      info: { version: '1.0' },
+      paths: { '/': {} },
+      host: 'example.com',
+      schemes: ['ftp'],
+    },
+    errors: [
+      {
+        message: 'Schemes MUST be https and no other protocol is allowed.',
+        path: ['schemes', '0'],
+        severity: DiagnosticSeverity.Error,
       },
     ],
   },

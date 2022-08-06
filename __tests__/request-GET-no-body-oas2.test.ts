@@ -1,39 +1,50 @@
-import { DiagnosticSeverity } from '@stoplight/types';
-import testRule from './__helpers__/helper';
+import { DiagnosticSeverity } from "@stoplight/types";
+import testRule from "./__helpers__/helper";
 
-testRule('request-GET-no-body-oas2', [
-  {
-    name: 'valid case',
-    document: {
-      openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
-      paths: { '/': {} },
-    },
-    errors: [],
-  },
+testRule("request-GET-no-body-oas2", [
+	{
+		name: "valid case",
+		document: {
+			swagger: "2.0",
+			info: { version: "1.0", contact: {} },
+			paths: {
+				"/": {
+					get: {},
+				},
+			},
+		},
+		errors: [],
+	},
 
-  {
-    name: 'invalid case',
-    document: {
-      openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
-      paths: {},
-    },
-    errors: [
-      {
-        message: 'Stop forcing all API consumers to visit documentation for basic interactions when the API could do that itself.',
-        path: ['paths'],
-        severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
-      },
-    ],
-  },
+	{
+		name: "invalid case",
+		document: {
+			swagger: "2.0.0",
+			info: { version: "1.0", contact: {} },
+			paths: {
+				"/": {
+					get: {
+						summary: "Get is a question but this looks like an answer",
+						consumes: ["application/json"],
+						parameters: [
+							{
+								in: "body",
+								name: "user",
+								schema: {
+									type: "object",
+								},
+							},
+						],
+					},
+				},
+			},
+		},
+		errors: [
+			{
+				message: "A `GET` request MUST NOT accept a `body` parameter",
+				path: ["paths", "/", "get", "parameters", "0", "in"],
+				severity: DiagnosticSeverity.Error,
+			},
+		],
+	},
 ]);
