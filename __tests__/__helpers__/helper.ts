@@ -1,7 +1,8 @@
 jest.mock?.('fs');
 
-import { IRuleResult, Spectral, Document, Ruleset } from '@stoplight/spectral-core';
+import { IRuleResult, Spectral, Document, Ruleset, RulesetDefinition } from '@stoplight/spectral-core';
 import { httpAndFileResolver } from '@stoplight/spectral-ref-resolver';
+import apisYouWontHateRuleset from '../../src/ruleset';
 
 export type RuleName = keyof Ruleset['rules'];
 
@@ -35,7 +36,7 @@ export function createWithRules(rules: (keyof Ruleset['rules'])[]): Spectral {
 
   s.setRuleset({
     extends: [
-      // [aasRuleset as RulesetDefinition, 'off'],
+      [apisYouWontHateRuleset as RulesetDefinition, 'off'],
     ],
     rules: rules.reduce((obj, name) => {
       obj[name] = true;

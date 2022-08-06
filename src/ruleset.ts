@@ -53,7 +53,7 @@ export default {
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'api-health-format': {
       description: 'Health path (`/heath`) SHOULD support Health Check Response Format',
-      message: 'Use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check',
+      message: 'Use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check.',
       formats: [oas3],
       given: "$.paths.[/health].responses[*].content.*~",
       then: {
@@ -70,7 +70,7 @@ export default {
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'paths-kebab-case': {
       description: 'Should paths be kebab-case.',
-      message: '{{property}} should be kebab-case (lower case and separated with hyphens)',
+      message: '{{property}} should be kebab-case (lower case and separated with hyphens).',
       given: "$.paths[*]~",
       then: {
         function: pattern,
@@ -110,7 +110,7 @@ export default {
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'no-http-basic': {
-      description: 'Consider a more secure alternative to HTTP Basic.',
+      description: 'Consider a more secure alternative to HTTP Basic',
       message: 'HTTP Basic is a pretty insecure way to pass credentials around, please consider an alternative.',
       given: "$.components.securitySchemes[*]",
       then: {
@@ -126,7 +126,7 @@ export default {
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'no-x-headers': {
       description: 'Please do not use headers with X-',
-      message: 'Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648',
+      message: 'Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648.',
       given: "$..parameters.[?(@.in === 'header')].name",
       then: {
         function: pattern,
@@ -140,7 +140,7 @@ export default {
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'no-x-response-headers': {
       description: 'Please do not use headers with X-',
-      message: 'Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648',
+      message: 'Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648.',
       given: "$..headers.*~",
       then: {
         function: pattern,
@@ -231,7 +231,7 @@ export default {
 
     // Author: Andrzej (https://github.com/jerzyn)
     'request-support-json-oas3': {
-      description: 'Every request SHOULD support `application/json` media type',
+      description: 'Every request SHOULD support `application/json` media type.',
       message: '{{description}}: {{error}}',
       given: "$.paths.[*].requestBody.content[?(@property.indexOf('json') === -1)]^",
       then: {
@@ -261,13 +261,13 @@ export default {
 
     // Author: Nauman Ali (https://github.com/naumanali-stoplight)
     'no-global-versioning': {
-      description: 'Using global versions just forces all your clients to do a lot more work for each upgrade. Please consider using API Evolution instead.',
-      message: 'Server URL should not contain global versions',
+      description: 'Server URL should not contain global versions',
+      message: 'Using global versions just forces all your clients to do a lot more work for each upgrade. Please consider using API Evolution instead. More: https://apisyouwonthate.com/blog/api-evolution-for-rest-http-apis.',
       given: "$.servers[*].url",
       then: {
         function: pattern,
         functionOptions: {
-          notMatch: '/v[1-9]'
+          notMatch: '\/v[1-9]+'
         }
       },
       formats: [oas3],

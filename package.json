@@ -2,7 +2,7 @@
   "name": "@apisyouwonthate/style-guide",
   "version": "0.0.0",
   "description": "Make your HTTP APIs better, faster, stronger, whether they are still being designed (API Design-First) or your organization has flopped various mismatched APIs into production and now you're thinking some consistency would be nice. Using Spectral and OpenAPI.",
-  "main": "ruleset.js",
+  "main": "src/ruleset.ts",
   "directories": {
     "test": "test"
   },
