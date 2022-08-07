@@ -1,7 +1,7 @@
 // These rules dictate actual content of the API: headers, URL conventions, and general 
 // Good Ideas™ for HTTP APIs, mainly from the books/blogs on apisyouwonthate.com
 
-import { enumeration, length, truthy, undefined as undefinedFunc, pattern, schema } from "@stoplight/spectral-functions";
+import { enumeration, truthy, undefined as undefinedFunc, pattern, schema } from "@stoplight/spectral-functions";
 import { oas2, oas3 } from "@stoplight/spectral-formats";
 import { DiagnosticSeverity } from "@stoplight/types";
 
@@ -215,16 +215,17 @@ export default {
     },
 
     // Author: Andrzej (https://github.com/jerzyn)
-    'request-support-json-oas3': {
-      description: 'Every request SHOULD support `application/json` media type.',
-      given: "$.paths.[*].requestBody.content[?(@property.match(/json/))]",
-      then: {
-        function: length,
-        min: 1,
-      },
-      formats: [oas3],
-      severity: DiagnosticSeverity.Warning,
-    },
+    // TODO: Not working, send in your improvements via a PR if you can! 
+    // 'request-support-json-oas3': {
+    //   description: 'Every request SHOULD support at least one `application/json` content type.',
+    //   given: "$.paths.[*].requestBody.content[?(@property.match(/json/))]",
+    //   then: {
+    //     function: length,
+    //     min: 1,
+    //   },
+    //   formats: [oas3],
+    //   severity: DiagnosticSeverity.Warning,
+    // },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'no-unknown-error-format': {
