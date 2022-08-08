@@ -58,15 +58,6 @@ testRule('no-unknown-error-format', [
           "application/json",
         ],
         severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
       },
     ],
   },

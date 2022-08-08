@@ -30,14 +30,6 @@ testRule('api-home-get', [
         message: "Otherwise people won't know how to get it.",
         path: ['paths', '/'],
         severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
       },
     ],
   },

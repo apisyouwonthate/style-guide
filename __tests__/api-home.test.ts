@@ -24,15 +24,6 @@ testRule('api-home', [
         message: 'Stop forcing all API consumers to visit documentation for basic interactions when the API could do that itself.',
         path: ['paths'],
         severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
       },
     ],
   },

@@ -24,15 +24,6 @@ testRule('api-health', [
         message: 'Creating a `/health` endpoint is a simple solution for pull-based monitoring and manually checking the status of an API.',
         path: ['paths'],
         severity: DiagnosticSeverity.Warning,
-        range: {
-          start: expect.objectContaining({
-            line: 0,
-          }),
-          end: expect.objectContaining({
-            line: 0,
-          }),
-        },
-        
       },
     ],
   },
