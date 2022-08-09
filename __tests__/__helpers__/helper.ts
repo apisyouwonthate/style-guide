@@ -1,5 +1,3 @@
-jest.mock?.('fs');
-
 import { IRuleResult, Spectral, Document, Ruleset, RulesetDefinition } from '@stoplight/spectral-core';
 import { httpAndFileResolver } from '@stoplight/spectral-ref-resolver';
 import apisYouWontHateRuleset from '../../src/ruleset';

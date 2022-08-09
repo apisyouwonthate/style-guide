@@ -6,7 +6,7 @@ testRule('paths-kebab-case', [
     name: 'valid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { '/this-is-kebab-case': {} },
     },
     errors: [],
@@ -16,7 +16,7 @@ testRule('paths-kebab-case', [
     name: 'invalid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { '/this_is_snake_case': {} },
     },
     errors: [

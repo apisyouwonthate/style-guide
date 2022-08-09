@@ -6,7 +6,7 @@ testRule("request-GET-no-body-oas3", [
 		name: "valid case",
 		document: {
 			openapi: "3.1.0",
-			info: { version: "1.0", contact: {} },
+			info: { version: "1.0" },
 			paths: {
 				"/": {
 					get: {},
@@ -20,7 +20,7 @@ testRule("request-GET-no-body-oas3", [
 		name: "invalid case",
 		document: {
 			openapi: "3.1.0",
-			info: { version: "1.0", contact: {} },
+			info: { version: "1.0" },
 			paths: {
 				"/": {
 					get: {

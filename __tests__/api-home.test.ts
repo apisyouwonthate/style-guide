@@ -6,7 +6,7 @@ testRule('api-home', [
     name: 'valid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { '/': {} },
     },
     errors: [],
@@ -16,7 +16,7 @@ testRule('api-home', [
     name: 'invalid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: {},
     },
     errors: [

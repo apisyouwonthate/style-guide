@@ -6,7 +6,7 @@ testRule("request-GET-no-body-oas2", [
 		name: "valid case",
 		document: {
 			swagger: "2.0",
-			info: { version: "1.0", contact: {} },
+			info: { version: "1.0" },
 			paths: {
 				"/": {
 					get: {},
@@ -20,7 +20,7 @@ testRule("request-GET-no-body-oas2", [
 		name: "invalid case",
 		document: {
 			swagger: "2.0.0",
-			info: { version: "1.0", contact: {} },
+			info: { version: "1.0" },
 			paths: {
 				"/": {
 					get: {

@@ -6,7 +6,7 @@ testRule('no-global-versioning', [
     name: 'valid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { '/': {} },
       servers: [{ url: 'https://api.example.com/' }]
     },
@@ -17,7 +17,7 @@ testRule('no-global-versioning', [
     name: 'an API that is getting ready to give its consumers a really bad time',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { '/': {} },
       servers: [{ url: 'https://api.example.com/v1' }]
     },
@@ -34,7 +34,7 @@ testRule('no-global-versioning', [
     name: 'an API that got massively out of control as usual',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { '/': {} },
       servers: [{ url: 'https://api.example.com/v13' }]
     },

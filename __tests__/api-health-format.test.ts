@@ -1,7 +1,6 @@
 import { DiagnosticSeverity } from '@stoplight/types';
 import testRule from './__helpers__/helper';
 
-
 const template = (contentType: string) => {
   return {
     openapi: '3.1.0',

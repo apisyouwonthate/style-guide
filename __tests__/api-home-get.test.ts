@@ -6,7 +6,7 @@ testRule('api-home-get', [
     name: 'valid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: { 
         '/': {
           'get': {}
@@ -20,7 +20,7 @@ testRule('api-home-get', [
     name: 'invalid case',
     document: {
       openapi: '3.1.0',
-      info: { version: '1.0', contact: {} },
+      info: { version: '1.0' },
       paths: {
         '/': {}
       },
