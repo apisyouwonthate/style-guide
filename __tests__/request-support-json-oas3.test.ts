@@ -57,7 +57,7 @@ testRule("request-support-json-oas3", [
 		},
 		errors: [
 			{
-				message: "Every request SHOULD support `application/json` media type.",
+				message: 'Every request SHOULD support at least one `application/json` content type.',
 				path: ["paths", "/", "get", "requestBody", "content"],
 				severity: DiagnosticSeverity.Warning,
 			},

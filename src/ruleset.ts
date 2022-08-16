@@ -215,17 +215,24 @@ export default {
     },
 
     // Author: Andrzej (https://github.com/jerzyn)
-    // TODO: Not working, send in your improvements via a PR if you can! 
-    // 'request-support-json-oas3': {
-    //   description: 'Every request SHOULD support at least one `application/json` content type.',
-    //   given: "$.paths.[*].requestBody.content[?(@property.match(/json/))]",
-    //   then: {
-    //     function: length,
-    //     min: 1,
-    //   },
-    //   formats: [oas3],
-    //   severity: DiagnosticSeverity.Warning,
-    // },
+    'request-support-json-oas3': {
+      description: 'Every request SHOULD support at least one `application/json` content type.',
+      given: "$.paths[*][*].requestBody.content",
+      then: {
+        function: schema,
+        functionOptions: {
+          schema: {
+            type: 'object',
+            properties: {
+              'application/json': true
+            },
+            required: ['application/json']
+          }
+        }
+      },
+      formats: [oas3],
+      severity: DiagnosticSeverity.Warning,
+    },
 
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     'no-unknown-error-format': {
