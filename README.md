@@ -43,7 +43,7 @@ You should see some output like this, letting you know there are a few more stan
  112:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format.   paths./v1/orders/{order}.get.responses[404].content.application/json
 ```
 
-Now you have some things to work on for your API. Thankfully this lot only looks like warnings, so they can be got to those in time. Warnings are not going to [fail continuous integration](https://meta.stoplight.io/docs/spectral/ZG9jOjExNTMyOTAx-continuous-integration) (unless [you want them to](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg1-spectral-cli#error-results)).
+Now you have some things to work on for your API. Thankfully these are only warnings, which are not going to [fail continuous integration](https://meta.stoplight.io/docs/spectral/ZG9jOjExNTMyOTAx-continuous-integration) (unless [you want them to](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg1-spectral-cli#error-results)).
 
 ## Backstory
 
