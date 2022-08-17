@@ -1,5 +1,7 @@
-// These rules dictate actual content of the API: headers, URL conventions, and general
-// Good Ideas™ for HTTP APIs, mainly from the books/blogs on apisyouwonthate.com
+/*
+ * These rules dictate actual content of the API: headers, URL conventions, and general
+ * Good Ideas™ for HTTP APIs, mainly from the books/blogs on apisyouwonthate.com
+ */
 
 import {
   enumeration,
@@ -11,12 +13,6 @@ import {
 import { oas2, oas3 } from "@stoplight/spectral-formats";
 import { DiagnosticSeverity } from "@stoplight/types";
 
-// TODO Make sure every post/put/delete/patch endpoint has some sort of security (OAuth 2, API Key, but not both)
-// TODO Mime type should have "; charset=utf-8"
-// TODO No "(e/E)rror" in 2xx
-
-// https://apistylebook.stoplight.io/docs/url-guidelines
-// paths-no-file-extensions
 
 export default {
   rules: {
