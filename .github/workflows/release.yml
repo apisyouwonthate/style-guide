@@ -16,6 +16,7 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm test
+      - run: npm run build
       - run: npx semantic-release --branches main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
