@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "postbuild": "cd dist/ && npm ci",
     "test": "jest"
   },
   "repository": {
