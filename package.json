@@ -7,8 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "postbuild": "cd dist/ && npm ci",
+    "build": "tsup",
     "test": "jest"
   },
   "repository": {
@@ -36,6 +35,13 @@
     "@sindresorhus/tsconfig": "^3.0.1",
     "@types/jest": "^28.1.6",
     "jest": "^28.0",
-    "ts-jest": "^28.0"
+    "ts-jest": "^28.0",
+    "tsup": "^6.2.3"
+  },
+  "tsup": {
+    "entry": ["src/ruleset.ts"],
+    "clean": true,
+    "dts": true,
+    "sourcemap": true
   }
 }
