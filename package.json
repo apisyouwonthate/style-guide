@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "type-check": "tsc --noEmit --noErrorTruncation --pretty false --incremental false",
     "test": "jest"
   },
   "repository": {
