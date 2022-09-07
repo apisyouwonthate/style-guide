@@ -33,6 +33,7 @@
     "@stoplight/types": "^13.6.0"
   },
   "devDependencies": {
+    "@sindresorhus/tsconfig": "^3.0.1",
     "@types/jest": "^28.1.6",
     "jest": "^28.0",
     "ts-jest": "^28.0"
