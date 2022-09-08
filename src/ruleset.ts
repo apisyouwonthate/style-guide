@@ -278,5 +278,20 @@ export default {
       formats: [oas3],
       severity: DiagnosticSeverity.Warning,
     },
+    // Author: Advanced API & Integrations Team (https://www.oneadvanced.com/)
+    "no-file-extensions-in-paths": {
+      description: "Paths must not include file extensions such as .json and .xml",
+      message:
+        "Paths must not include file extensions such as .json and .xml",
+        given: "$.paths[*]~",
+        then: {
+        function: pattern,
+        functionOptions: {
+          notMatch: ".(\\.json|\\.xml|\\.html|\\.txt)$",
+        },
+      },
+      formats: [oas3],
+      severity: DiagnosticSeverity.Error,
+    },
   },
 };
