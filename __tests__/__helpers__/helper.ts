@@ -36,7 +36,7 @@ export function createWithRules(rules: (keyof Ruleset['rules'])[]): Spectral {
     extends: [
       [apisYouWontHateRuleset as RulesetDefinition, 'off'],
     ],
-    rules: rules.reduce((obj, name) => {
+    rules: rules.reduce((obj: Record<string, boolean>, name) => {
       obj[name] = true;
       return obj;
     }, {}),

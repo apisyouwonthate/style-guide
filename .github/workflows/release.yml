@@ -14,8 +14,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: npm
       - run: npm ci
       - run: npm test
+      - run: npm run type-check
       - run: npm run build
       - run: npx semantic-release --branches main
         env:
