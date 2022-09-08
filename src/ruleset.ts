@@ -282,7 +282,7 @@ export default {
     "no-file-extensions-in-paths": {
       description: "Paths must not include file extensions such as .json, .xml, .html and .txt",
       message:
-        "Paths must not include file extensions such as .json, .xml, .html and .txt",
+        "Paths must not include file extensions such as .json, .xml, .html and .txt. Use the OpenAPI `content` keyword to tell consumers which Media Types are available.",
         given: "$.paths[*]~",
         then: {
         function: pattern,

@@ -21,8 +21,53 @@ testRule('no-file-extensions-in-paths', [
     },
     errors: [
       {
-        message: 'Paths must not include file extensions such as .json, .xml, .html and .txt',
+        message: 'Paths must not include file extensions such as .json, .xml, .html and .txt. Use the OpenAPI `content` keyword to tell consumers which Media Types are available.',
         path: ["paths", "resources.json"],
+        severity: DiagnosticSeverity.Error,
+      },
+    ],
+  },
+  {
+    name: 'an API definition that is returning a xml file',
+    document: {
+      openapi: '3.1.0',
+      info: { version: '1.0' },
+      paths: { 'resources.xml': {} }
+    },
+    errors: [
+      {
+        message: 'Paths must not include file extensions such as .json, .xml, .html and .txt. Use the OpenAPI `content` keyword to tell consumers which Media Types are available.',
+        path: ["paths", "resources.xml"],
+        severity: DiagnosticSeverity.Error,
+      },
+    ],
+  },
+  {
+    name: 'an API definition that is returning a html file',
+    document: {
+      openapi: '3.1.0',
+      info: { version: '1.0' },
+      paths: { 'resources.html': {} }
+    },
+    errors: [
+      {
+        message: 'Paths must not include file extensions such as .json, .xml, .html and .txt. Use the OpenAPI `content` keyword to tell consumers which Media Types are available.',
+        path: ["paths", "resources.html"],
+        severity: DiagnosticSeverity.Error,
+      },
+    ],
+  },
+  {
+    name: 'an API definition that is returning a txt file',
+    document: {
+      openapi: '3.1.0',
+      info: { version: '1.0' },
+      paths: { 'resources.txt': {} }
+    },
+    errors: [
+      {
+        message: 'Paths must not include file extensions such as .json, .xml, .html and .txt. Use the OpenAPI `content` keyword to tell consumers which Media Types are available.',
+        path: ["paths", "resources.txt"],
         severity: DiagnosticSeverity.Error,
       },
     ],
