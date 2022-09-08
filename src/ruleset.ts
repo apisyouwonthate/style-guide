@@ -280,9 +280,9 @@ export default {
     },
     // Author: Advanced API & Integrations Team (https://www.oneadvanced.com/)
     "no-file-extensions-in-paths": {
-      description: "Paths must not include file extensions such as .json and .xml",
+      description: "Paths must not include file extensions such as .json, .xml, .html and .txt",
       message:
-        "Paths must not include file extensions such as .json and .xml",
+        "Paths must not include file extensions such as .json, .xml, .html and .txt",
         given: "$.paths[*]~",
         then: {
         function: pattern,

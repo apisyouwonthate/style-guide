@@ -21,8 +21,8 @@ testRule('no-file-extensions-in-paths', [
     },
     errors: [
       {
-        message: 'Paths must not include file extensions such as .json and .xml',
-        path: ['paths', '0', 'resources.json'],
+        message: 'Paths must not include file extensions such as .json, .xml, .html and .txt',
+        path: ["paths", "resources.json"],
         severity: DiagnosticSeverity.Error,
       },
     ],
