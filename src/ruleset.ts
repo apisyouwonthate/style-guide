@@ -278,5 +278,18 @@ export default {
       formats: [oas3],
       severity: DiagnosticSeverity.Warning,
     },
+
+    // Author: Advanced API & Integrations Team (https://www.oneadvanced.com/)
+    "adv-security-schemes-defined": {
+      description: "All APIs MUST have a security scheme defined.",
+      message: "This API definition does not have any security scheme defined.",
+      given: "$..components",
+      then: {
+        field: "securitySchemes",
+        function: truthy
+      },
+      formats: [oas3],
+      severity: DiagnosticSeverity.Error,
+    },
   },
 };
