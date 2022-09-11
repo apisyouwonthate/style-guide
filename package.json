@@ -3,6 +3,15 @@
   "version": "0.0.0",
   "description": "Make your HTTP APIs better, faster, stronger, whether they are still being designed (API Design-First) or your organization has flopped various mismatched APIs into production and now you're thinking some consistency would be nice. Using Spectral and OpenAPI.",
   "main": "dist/ruleset.js",
+  "module": "dist/ruleset.mjs",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "types": "./dist/ruleset.d.ts",
+      "import": "./dist/ruleset.mjs",
+      "require": "./dist/ruleset.js"
+    }
+  },
   "directories": {
     "test": "test"
   },
@@ -43,6 +52,7 @@
     "entry": ["src/ruleset.ts"],
     "clean": true,
     "dts": true,
+    "format": ["cjs", "esm"],
     "sourcemap": true,
     "noExternal": ["@stoplight/types"]
   }
