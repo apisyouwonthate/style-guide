@@ -54,6 +54,9 @@
     "dts": true,
     "format": ["cjs", "esm"],
     "sourcemap": true,
-    "noExternal": ["@stoplight/types"]
+    "noExternal": ["@stoplight/types"],
+    "footer": {
+      "js": "module.exports = module.exports.default;"
+    }
   }
 }
