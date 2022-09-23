@@ -291,7 +291,6 @@ export default {
           notMatch: ".(\\.json|\\.xml|\\.html|\\.txt)$",
         },
       },
-      formats: [oas3],
       severity: DiagnosticSeverity.Error,
     },
 
