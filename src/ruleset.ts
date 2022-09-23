@@ -288,7 +288,7 @@ export default {
         then: {
         function: pattern,
         functionOptions: {
-          notMatch: ".(\\.json|\\.xml|\\.html|\\.txt)$",
+          notMatch: "\.(json|xml|html|txt)$",
         },
       },
       severity: DiagnosticSeverity.Error,
