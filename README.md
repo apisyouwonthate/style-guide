@@ -23,7 +23,7 @@ echo 'extends: ["@apisyouwonthate/style-guide"]' > .spectral.yaml
 _If you're using VS Code or Stoplight Studio then the NPM modules will not be available. Instead you can use the CDN hosted version:_
 
 ```
-echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide@1.1/dist/ruleset.js"]' > .spectral.yaml
+echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide"]' > .spectral.yaml
 ```
 
 Next, use Spectral CLI to lint against your OpenAPI description. Don't have any OpenAPI? [Record some HTTP traffic to make OpenAPI](https://apisyouwonthate.com/blog/creating-openapi-from-http-traffic) and then you can switch to API Design-First going forwards.
@@ -32,7 +32,7 @@ Next, use Spectral CLI to lint against your OpenAPI description. Don't have any 
 spectral lint api/openapi.yaml
 ```
 
-You should see some output like this, letting you know there are a few more standards you could be using (shoutout to [Standards.REST](https://standards.rest/)):
+You should see some output like this, letting you know there are a few more standards you could be using (shout-out to [Standards.REST](https://standards.rest/)):
 
 ```
 /Users/phil/src/protect-earth-api/api/openapi.yaml

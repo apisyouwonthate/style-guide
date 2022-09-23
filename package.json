@@ -3,6 +3,15 @@
   "version": "0.0.0",
   "description": "Make your HTTP APIs better, faster, stronger, whether they are still being designed (API Design-First) or your organization has flopped various mismatched APIs into production and now you're thinking some consistency would be nice. Using Spectral and OpenAPI.",
   "main": "dist/ruleset.js",
+  "module": "dist/ruleset.mjs",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "types": "./dist/ruleset.d.ts",
+      "import": "./dist/ruleset.mjs",
+      "require": "./dist/ruleset.js"
+    }
+  },
   "directories": {
     "test": "test"
   },
@@ -29,11 +38,11 @@
   "homepage": "https://github.com/openapi-contrib/style-guides#readme",
   "dependencies": {
     "@stoplight/spectral-formats": "^1.2.0",
-    "@stoplight/spectral-functions": "^1.6.1",
-    "@stoplight/types": "^13.6.0"
+    "@stoplight/spectral-functions": "^1.6.1"
   },
   "devDependencies": {
     "@sindresorhus/tsconfig": "^3.0.1",
+    "@stoplight/types": "^13.6.0",
     "@types/jest": "^28.1.6",
     "jest": "^28.0",
     "ts-jest": "^28.0",
@@ -43,6 +52,11 @@
     "entry": ["src/ruleset.ts"],
     "clean": true,
     "dts": true,
-    "sourcemap": true
+    "format": ["cjs", "esm"],
+    "sourcemap": true,
+    "noExternal": ["@stoplight/types"],
+    "footer": {
+      "js": "module.exports = module.exports.default;"
+    }
   }
 }
