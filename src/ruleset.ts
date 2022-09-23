@@ -280,6 +280,21 @@ export default {
     },
 
     // Author: Advanced API & Integrations Team (https://www.oneadvanced.com/)
+    "no-file-extensions-in-paths": {
+      description: "Paths must not include file extensions such as .json, .xml, .html and .txt",
+      message:
+        "Paths must not include file extensions such as .json, .xml, .html and .txt. Use the OpenAPI `content` keyword to tell consumers which Media Types are available.",
+        given: "$.paths[*]~",
+        then: {
+        function: pattern,
+        functionOptions: {
+          notMatch: "\.(json|xml|html|txt)$",
+        },
+      },
+      severity: DiagnosticSeverity.Error,
+    },
+
+    // Author: Advanced API & Integrations Team (https://www.oneadvanced.com/)
     "adv-security-schemes-defined": {
       description: "All APIs MUST have a security scheme defined.",
       message: "This API definition does not have any security scheme defined.",
