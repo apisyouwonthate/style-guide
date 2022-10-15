@@ -16,6 +16,7 @@ import { DiagnosticSeverity } from "@stoplight/types";
 
 export default {
   rules: {
+
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     "api-home": {
       description: "APIs MUST have a root path (`/`) defined.",
@@ -61,7 +62,7 @@ export default {
       message:
         "Use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check.",
       formats: [oas3],
-      given: "$.paths.[/health]..responses[*].content.*~",
+      given: "$.paths[/health]..responses[*].content.*~",
       then: {
         function: enumeration,
         functionOptions: {
@@ -91,7 +92,7 @@ export default {
       description:
         "Please avoid exposing IDs as an integer, UUIDs are preferred.",
       given:
-        '$.paths..parameters[*].[?(@property === "name" && (@ === "id" || @.match(/(_id|Id)$/)))]^.schema',
+        '$.paths..parameters[*].[?(@property === "name" && (@ === "id" || @ && @.match(/(_id|Id)$/)))]^.schema',
       then: {
         function: schema,
         functionOptions: {
@@ -136,7 +137,7 @@ export default {
       description: "Please do not use headers with X-",
       message:
         "Headers cannot start with X-, so please find a new name for {{property}}. More: https://tools.ietf.org/html/rfc6648.",
-      given: "$..parameters.[?(@.in === 'header')].name",
+      given: "$..parameters[?(@.in === 'header')].name",
       then: {
         function: pattern,
         functionOptions: {
@@ -248,7 +249,7 @@ export default {
     "no-unknown-error-format": {
       description:
         "Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format.",
-      given: "$.paths.[*]..responses[?(@property.match(/^(4|5)/))].content.*~",
+      given: "$.paths[*]..responses[?(@property.match(/^(4|5)/))].content.*~",
       then: {
         function: enumeration,
         functionOptions: {
