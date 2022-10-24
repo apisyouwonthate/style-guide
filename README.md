@@ -23,8 +23,10 @@ echo 'extends: ["@apisyouwonthate/style-guide"]' > .spectral.yaml
 _If you're using VS Code or Stoplight Studio then the NPM modules will not be available. Instead you can use the CDN hosted version:_
 
 ```
-echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide"]' > .spectral.yaml
+echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide@1.3.1/dist/ruleset.js"]' > .spectral.yaml
 ```
+
+_**Note:** You need to use the full URL with CDN hosted rulesets because Spectral [cannot follow redirects through extends](https://github.com/stoplightio/spectral/issues/2266)._
 
 Next, use Spectral CLI to lint against your OpenAPI description. Don't have any OpenAPI? [Record some HTTP traffic to make OpenAPI](https://apisyouwonthate.com/blog/creating-openapi-from-http-traffic) and then you can switch to API Design-First going forwards.
 
