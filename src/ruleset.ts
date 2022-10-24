@@ -92,7 +92,7 @@ export default {
       description:
         "Please avoid exposing IDs as an integer, UUIDs are preferred.",
       given:
-        '$.paths..parameters[*].[?(@property === "name" && (@ === "id" || @ && @.match(/(_id|Id)$/)))]^.schema',
+        '$.paths..parameters[*][?(@property === "name" && (@ === "id" || @.match(/(_id|Id|-id)$/)))]^.schema',
       then: {
         function: schema,
         functionOptions: {
