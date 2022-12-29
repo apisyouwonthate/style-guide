@@ -23,7 +23,7 @@ echo 'extends: ["@apisyouwonthate/style-guide"]' > .spectral.yaml
 _If you're using VS Code or Stoplight Studio then the NPM modules will not be available. Instead you can use the CDN hosted version:_
 
 ```
-echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide@1.3.2/dist/ruleset.js"]' > .spectral.yaml
+echo 'extends: ["https://unpkg.com/@apisyouwonthate/style-guide@1.4.0/dist/ruleset.js"]' > .spectral.yaml
 ```
 
 _**Note:** You need to use the full URL with CDN hosted rulesets because Spectral [cannot follow redirects through extends](https://github.com/stoplightio/spectral/issues/2266)._
