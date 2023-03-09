@@ -40,9 +40,9 @@ You should see some output like this, letting you know there are a few more stan
 /Users/phil/src/protect-earth-api/api/openapi.yaml
   18:7   warning  api-health               Creating a `/health` endpoint is a simple solution for pull-based monitoring and manually checking the status of an API.  paths
   18:7   warning  api-home                 Stop forcing all API consumers to visit documentation for basic interactions when the API could do that itself.           paths
-  36:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format.   paths./v1/orders.post.responses[401].content.application/json
-  96:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format.   paths./v1/orders/{order}.get.responses[401].content.application/json
- 112:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc6648) or the JSON:API Error format.   paths./v1/orders/{order}.get.responses[404].content.application/json
+  36:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format.   paths./v1/orders.post.responses[401].content.application/json
+  96:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format.   paths./v1/orders/{order}.get.responses[401].content.application/json
+ 112:30  warning  no-unknown-error-format  Every error response SHOULD support either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format.   paths./v1/orders/{order}.get.responses[404].content.application/json
 ```
 
 Now you have some things to work on for your API. Thankfully these are only warnings, which are not going to [fail continuous integration](https://meta.stoplight.io/docs/spectral/ZG9jOjExNTMyOTAx-continuous-integration) (unless [you want them to](https://meta.stoplight.io/docs/spectral/ZG9jOjI1MTg1-spectral-cli#error-results)).
