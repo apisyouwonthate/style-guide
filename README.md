@@ -49,7 +49,7 @@ Now you have some things to work on for your API. Thankfully these are only warn
 
 ## Backstory
 
-You could write your API Style Guide as a giant manifesto and hope people see it, or you could [automate your API style guide](https://www.apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-and-grpc) using a tool like Spectral so that your API Style Guide is enforced at the pull request level. This is an integral part of any successful API Governance program, otherwise you're all just wasting time covering the basics far too late in the game.
+You could write your API Style Guide as a giant manifesto and hope people see it, or you could [automate your API style guide](https://apisyouwonthate.com/blog/automated-style-guides-for-rest-graphql-grpc/) using a tool like Spectral so that your API Style Guide is enforced at the pull request level. This is an integral part of any successful API Governance program, otherwise you're all just wasting time covering the basics far too late in the game.
 
 Spectral runs on top of OpenAPI and AsyncAPI, powering linting in editors, as a CLI tool, in continuous integration, etc., and comes with its [own set of baked 
 in OpenAPI v2/v3 rules](https://meta.stoplight.io/docs/spectral/docs/reference/openapi-rules.md). Making rules about how to write OpenAPI can help beginners write better OpenAPI, but its real power is using rules to make the actual APIs better and more consistent, before there is any programming involved.
