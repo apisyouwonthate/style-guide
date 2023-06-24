@@ -36,7 +36,7 @@ testRule("api-health-format", [
     errors: [
       {
         message:
-          "Health path (`/heath`) SHOULD support Health Check Response Format",
+          "Health path (`/health`) SHOULD support Health Check Response Format",
         path: [
           "paths",
           "/health",
@@ -57,7 +57,7 @@ testRule("api-health-format", [
     errors: [
       {
         message:
-          "Health path (`/heath`) SHOULD support Health Check Response Format",
+          "Health path (`/health`) SHOULD support Health Check Response Format",
         path: [
           "paths",
           "/health",
