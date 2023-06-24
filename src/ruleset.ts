@@ -65,7 +65,7 @@ export default {
       then: {
         function: enumeration,
         functionOptions: {
-          values: ["application/vnd.health+json"],
+          values: ["application/health+json"],
         },
       },
       severity: DiagnosticSeverity.Warning,

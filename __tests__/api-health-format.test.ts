@@ -26,7 +26,7 @@ const template = (contentType: string) => {
 testRule("api-health-format", [
   {
     name: "valid case",
-    document: template("application/vnd.health+json"),
+    document: template("application/health+json"),
     errors: [],
   },
 
