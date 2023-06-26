@@ -26,7 +26,7 @@ const template = (contentType: string) => {
 testRule("api-health-format", [
   {
     name: "valid case",
-    document: template("application/vnd.health+json"),
+    document: template("application/health+json"),
     errors: [],
   },
 
@@ -36,7 +36,7 @@ testRule("api-health-format", [
     errors: [
       {
         message:
-          "Health path (`/heath`) SHOULD support Health Check Response Format",
+          "Health path (`/health`) SHOULD support Health Check Response Format",
         path: [
           "paths",
           "/health",
@@ -57,7 +57,7 @@ testRule("api-health-format", [
     errors: [
       {
         message:
-          "Health path (`/heath`) SHOULD support Health Check Response Format",
+          "Health path (`/health`) SHOULD support Health Check Response Format",
         path: [
           "paths",
           "/health",

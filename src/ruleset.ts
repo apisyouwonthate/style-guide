@@ -57,7 +57,7 @@ export default {
     // Author: Phil Sturgeon (https://github.com/philsturgeon)
     "api-health-format": {
       message:
-        "Health path (`/heath`) SHOULD support Health Check Response Format",
+        "Health path (`/health`) SHOULD support Health Check Response Format",
       description:
         "Use existing standards (and draft standards) wherever possible, like the draft standard for health checks: https://datatracker.ietf.org/doc/html/draft-inadarei-api-health-check. To learn more about health check endpoints see https://apisyouwonthate.com/blog/health-checks-with-kubernetes.",
       formats: [oas3],
@@ -65,7 +65,7 @@ export default {
       then: {
         function: enumeration,
         functionOptions: {
-          values: ["application/vnd.health+json"],
+          values: ["application/health+json"],
         },
       },
       severity: DiagnosticSeverity.Warning,
