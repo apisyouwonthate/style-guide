@@ -257,7 +257,7 @@ export default {
     "no-unknown-error-format": {
       message: "Error response should use a standard error format.",
       description:
-        "Error responses can be unique snowflakes, different to every API, but standards exist to make them consistent, which reduces surprises and increase interoperability. Please use either RFC 7807 (https://tools.ietf.org/html/rfc7807) or the JSON:API Error format (https://jsonapi.org/format/#error-objects).",
+        "Error responses can be unique snowflakes, different to every API, but standards exist to make them consistent, which reduces surprises and increase interoperability. Please use either RFC 9457 (https://tools.ietf.org/html/rfc9457) or the JSON:API Error format (https://jsonapi.org/format/#error-objects).",
       given: "$.paths[*]..responses[?(@property.match(/^(4|5)/))].content.*~",
       then: {
         function: enumeration,
