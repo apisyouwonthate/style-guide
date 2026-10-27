@@ -310,7 +310,7 @@ export default {
       message: "All APIs MUST have a security scheme defined.",
       description:
         "This API definition does not have any security scheme defined, which means the entire API is open to the public. That's probably not what you want, even if all the data is read-only. Setting lower rate limits for the public and letting known consumers use more resources is a handy path to monetization, and helps know who your power users are when changes need feedback or migration, even if not just good practice.",
-      given: "$..components",
+      given: "$.components",
       then: {
         field: "securitySchemes",
         function: truthy,
