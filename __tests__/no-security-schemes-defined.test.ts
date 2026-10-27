@@ -34,4 +34,27 @@ testRule("no-security-schemes-defined", [
       },
     ],
   },
+
+  {
+    name: "ignores a nested property named components",
+    document: {
+      openapi: "3.1.0",
+      info: { version: "1.0" },
+      paths: {},
+      components: {
+        schemas: {
+          Foo: {
+            type: "object",
+            properties: {
+              components: { type: "number" },
+            },
+          },
+        },
+        securitySchemes: {
+          sec: { type: "http", scheme: "bearer" },
+        },
+      },
+    },
+    errors: [],
+  },
 ]);
